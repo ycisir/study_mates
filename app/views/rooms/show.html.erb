@@ -1,0 +1,8 @@
+<h1>Room details</h1>
+
+<h3><%= @room.name %></h3>
+<p><%= @room.description %></p>
+
+<%= link_to "Back", rooms_path %>
+<%= link_to "Edit", edit_room_path(@room) %>
+<%= button_to "Delete", room_path(@room), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
