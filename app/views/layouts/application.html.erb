@@ -22,9 +22,24 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
+  <nav>
+    <% if user_signed_in? %>
+      <h3>Welcome, <%= current_user.email %></h3>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+    <hr>
+  </nav>
   <body>
-    <p><%= notice %></p>
+    <% if notice.present? %>
+      <p><%= notice %></p>
+    <% end %>
+
+    <% if alert.present? %>
+      <p><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
