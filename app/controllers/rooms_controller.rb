@@ -1,18 +1,20 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy]
+
   def index
-    @rooms = Room.all
+    @rooms = Room.all.order(created_at: :desc)
   end
 
   def show
   end
 
   def new
-    @room = Room.new
+    @room = current_user.rooms.new
   end
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.rooms.new(room_params)
     if @room.save
       redirect_to @room, notice: 'Room created'
     else
