@@ -1,9 +1,10 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: %i[ show edit update destroy]
   before_action :authenticate_user!, only: %i[ new create edit update destroy]
+  before_action :authorize_user, only: %i[ edit update destroy]
 
   def index
-    @rooms = Room.all.order(created_at: :desc)
+    @rooms = Room.includes(:user).all.order(created_at: :desc)
   end
 
   def show
@@ -42,6 +43,10 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def authorize_user
+    redirect_to rooms_path, alert: "You are not authorized" unless current_user == @room.user
   end
 
   def room_params
