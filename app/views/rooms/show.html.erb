@@ -2,6 +2,7 @@
 
 <h3><%= @room.name %></h3>
 <p><%= @room.description %></p>
+<p>created by: <i><%= @room.user.email %></i></p>
 
 <%= link_to "Back", rooms_path %>
 <%= link_to "Edit", edit_room_path(@room) %>
