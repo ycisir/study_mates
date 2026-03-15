@@ -24,7 +24,10 @@
   </head>
   <nav>
     <% if user_signed_in? %>
-      <h3>Welcome, <%= current_user.email %></h3>
+      <h3>Welcome, <%= current_user.name %></h3>
+
+      <%= link_to "Edit profile", edit_user_registration_path %>
+      <%= button_to "Delete account", registration_path(current_user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "Login", new_user_session_path %>
