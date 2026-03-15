@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :rooms, dependent: :destroy
+  enum :role, { member: 0, admin: 1 }
 end
