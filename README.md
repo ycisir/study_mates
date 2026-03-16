@@ -1,37 +1,29 @@
-# StudyMates
+# Study Mates
 
-Building StudyMates
-
-A **Ruby on Rails–based collaborative e-learning platform** that enables users to create study rooms, join discussions, and communicate through real-time messaging. The platform focuses on helping learners collaborate effectively through shared study spaces and interactive communication.
+Developing a SaaS-based collaborative e-learning platform using Ruby on Rails
 
 ---
 
 ### Requirements
 
-Ensure the following dependencies are installed before running the application locally.
-
 - Ruby 3.4
 - Rails 8.1
-- PostgreSQL
+- PostgreSQL (Setup required on local machine)
 - Redis
-- Node.js
-- Yarn
 - Bundler
 - Git
 
 ---
 
-### Local Development Setup
+### Local setup
 
 ```bash
-git clone https://github.com/yourusername/study_mates.git
+git clone https://github.com/ycisir/study_mates.git
 cd study_mates
 bundle install
-rails db:create
-rails db:migrate
+rails db:create db:migrate
 rails s
 ```
 
 ### License
-
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
