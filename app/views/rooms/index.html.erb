@@ -1,11 +1,27 @@
-<h1>Rooms</h1>
+<div class="row">
+  
+  <div class="col-sm-3 mb-5">
+    <%# render "topic" %>
+    Topic
+  </div>
+  
+  <div class="col-sm-6 mb-5">
+    <div class="row">
+      <div class="col">
+        <h5>All rooms</h5>
+        <small><%= pluralize(@rooms.count, 'room') %> available</small>
+      </div>
+      <div class="col text-end">
+        <%= link_to "New room", new_room_path, class: "btn btn-outline-primary" if user_signed_in? %>
+      </div>
+    </div>
 
-<%= link_to "New room", new_room_path %>
-<% @rooms.each do |room| %>
-<ul>
-	<li>
-		<%= link_to room.name, room %>
-	</li>
-</ul>
+    <%= render "rooms" %>
+  </div>
+  
+  <div class="col-sm-3">
+    <%# render "activity" %>
+    Activity
+  </div>
 
-<% end %>
+</div>
