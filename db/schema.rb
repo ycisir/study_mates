@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_17_092340) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_17_092604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,8 +18,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_17_092340) do
     t.datetime "created_at", null: false
     t.text "description"
     t.string "name"
+    t.bigint "topic_id", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["topic_id"], name: "index_rooms_on_topic_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
@@ -46,5 +48,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_17_092340) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "rooms", "topics"
   add_foreign_key "rooms", "users"
 end
