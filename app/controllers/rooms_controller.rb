@@ -4,6 +4,7 @@ class RoomsController < ApplicationController
   before_action :authorize_user, only: %i[ edit update destroy]
 
   def index
+    @topics = Topic.last(10)
     @rooms = Room.includes(:user).all.order(created_at: :desc)
   end
 
@@ -12,24 +13,39 @@ class RoomsController < ApplicationController
 
   def new
     @room = current_user.rooms.new
+    load_topics
   end
 
   def create
     @room = current_user.rooms.new(room_params)
+
+    if @room.topic_name.present?
+      topic = Topic.find_or_create_by(name: @room.topic_name.titleize)
+      @room.topic = topic
+    end
+
     if @room.save
       redirect_to @room, notice: 'Room created'
     else
+      load_topics
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    load_topics
   end
 
   def update
+    if params[:room][:topic_name].present?
+      topic = Topic.find_or_create_by(name: params[:room][:topic_name].titleize)
+      @room.topic = topic
+    end
+
     if @room.update(room_params)
       redirect_to @room, notice: 'Room updated'
     else
+      load_topics
       render :edit, status: :unprocessable_entity
     end
   end
@@ -50,6 +66,10 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.expect(room: [ :name, :description ])
+    params.expect(room: [ :name, :description, :topic_name ])
+  end
+
+  def load_topics
+    @topics = Topic.pluck(:name)
   end
 end
