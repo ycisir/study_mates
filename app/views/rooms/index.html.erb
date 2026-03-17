@@ -1,27 +1,80 @@
-<div class="row">
-  
-  <div class="col-sm-3 mb-5">
-    <%# render "topic" %>
-    Topic
-  </div>
-  
-  <div class="col-sm-6 mb-5">
-    <div class="row">
-      <div class="col">
-        <h5>All rooms</h5>
-        <small><%= pluralize(@rooms.count, 'room') %> available</small>
-      </div>
-      <div class="col text-end">
-        <%= link_to "New room", new_room_path, class: "btn btn-outline-primary" if user_signed_in? %>
+<div class="row g-4">
+
+    <!-- Topics Sidebar -->
+    <div class="col-lg-3 col-md-4">
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body">
+
+          <h6 class="fw-semibold mb-3">
+            <i class="bi bi-tags me-2"></i>Topics
+          </h6>
+
+          <%# render "topic" %>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item px-0">Ruby</li>
+            <li class="list-group-item px-0">Rails</li>
+            <li class="list-group-item px-0">JavaScript</li>
+          </ul>
+
+        </div>
       </div>
     </div>
 
-    <%= render "rooms" %>
-  </div>
-  
-  <div class="col-sm-3">
-    <%# render "activity" %>
-    Activity
-  </div>
 
-</div>
+    <!-- Main Rooms Feed -->
+    <div class="col-lg-6 col-md-8">
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+          <h5 class="fw-semibold mb-0">All Rooms</h5>
+          <small class="text-muted">
+            <%= pluralize(@rooms.count, 'room') %> available
+          </small>
+        </div>
+
+        <% if user_signed_in? %>
+          <%= link_to new_room_path, class: "btn btn-primary btn-sm" do %>
+            <i class="bi bi-plus-lg me-1"></i>
+            New Room
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <%= render "rooms" %>
+
+    </div>
+
+
+    <!-- Activity Sidebar -->
+    <div class="col-lg-3 d-none d-lg-block">
+
+      <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body">
+
+          <h6 class="fw-semibold mb-3">
+            <i class="bi bi-activity me-2"></i>Recent Activity
+          </h6>
+
+          <%# render "activity" %>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item px-0 small">
+              @alex joined Ruby Room
+            </li>
+            <li class="list-group-item px-0 small">
+              New message in Rails Room
+            </li>
+            <li class="list-group-item px-0 small">
+              @sam created JavaScript Room
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
