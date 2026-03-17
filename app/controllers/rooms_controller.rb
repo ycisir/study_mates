@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
 
   def index
     @topics = Topic.last(10)
-    @rooms = Room.includes(:user).all.order(created_at: :desc)
+    @rooms = Room.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   def show
