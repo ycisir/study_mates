@@ -69,3 +69,5 @@ end
 gem "devise", "~> 5.0"
 gem "dartsass-rails"
 gem "bootstrap"
+
+gem "will_paginate", "~> 4.0"
