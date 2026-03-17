@@ -1,14 +1,45 @@
 <%= form_with model: room do |f| %>
-	<div>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
+
+	<!-- Room Name -->
+	<div class="mb-3">
+	  <%= f.label :name, class: "form-label" %>
+	  <%= f.text_field :name, class: "form-control" %>
+
+	  <% room.errors.full_messages_for(:name).each do |msg| %>
+	    <small class="text-danger"><%= msg %></small>
+	  <% end %>
 	</div>
 
-	<div>
-		<%= f.label :description %>
-		<%= f.text_area :description %>
+	<!-- Topic -->
+	<div class="mb-3">
+	  <%= f.label :topic_name, class: "form-label" %>
+	  <%= f.text_field :topic_name, class: "form-control", list: "topics" %>
+
+	  <datalist id="topics">
+	    <% @topics.each do |topic| %>
+	      <option value="<%= topic %>">
+	    <% end %>
+	  </datalist>
+
+	  <% room.errors.full_messages_for(:topic_name).each do |msg| %>
+	    <small class="text-danger"><%= msg %></small>
+	  <% end %>
 	</div>
 
-	<%= f.submit %>
+	<!-- Description -->
+	<div class="mb-4">
+	  <%= f.label :description, class: "form-label" %>
+	  <%= f.text_area :description, rows: 4, class: "form-control" %>
+
+	  <% room.errors.full_messages_for(:description).each do |msg| %>
+	    <small class="text-danger"><%= msg %></small>
+	  <% end %>
+	</div>
+
+	<!-- Buttons -->
+	<div class="d-flex justify-content-between">
+	  <%= link_to "Cancel", rooms_path, class: "btn btn-outline-secondary" %>
+	  <%= f.submit class: "btn btn-primary" %>
+	</div>
 
 <% end %>

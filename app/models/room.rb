@@ -5,10 +5,16 @@ class Room < ApplicationRecord
 	belongs_to :topic
 	validates :name, presence: { message: "is required" }
 	validates :topic_name, presence: { message: "is required" }
-	validates :description,
-            presence: { message: "is required" },
-            length: { minimum: 10, message: "must be at least 10 characters long" }
+	validates :description, length: { minimum: 10, message: "must be at least 10 characters long" }
 	before_validation :clean_data
+
+	def topic_name
+		topic&.name
+	end
+
+	def topic_name=(name)
+		self.topic = Topic.find_or_create_by(name: name)
+	end
 
 	private
 

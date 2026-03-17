@@ -1,5 +1,25 @@
-<footer class="footer bg-light border-top">
-  <div class="container text-center">
-    <small>© <%= Time.current.year %> StudyMates, All rights reserved</small>
+<footer class="footer bg-white border-top">
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <!-- Left -->
+      <div class="col-md-6 text-center text-md-start">
+        <small class="text-muted">
+          © <%= Time.current.year %> <strong>StudyMates</strong>. All rights reserved.
+        </small>
+      </div>
+
+      <!-- Right -->
+      <div class="col-md-6 text-center text-md-end">
+        <small>
+          <%= link_to "About", "#", class: "text-decoration-none text-muted me-3" %>
+          <%= link_to "Privacy", "#", class: "text-decoration-none text-muted me-3" %>
+          <%= link_to "Contact", "#", class: "text-decoration-none text-muted" %>
+        </small>
+      </div>
+
+    </div>
+
   </div>
 </footer>
