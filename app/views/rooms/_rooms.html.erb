@@ -1,0 +1,44 @@
+<% unless @rooms.empty? %>
+  <% @rooms.each do |room| %>
+    <div class="jumbotron jumbotron-fluid bg-light rounded mt-3">
+      <div class="container p-3">
+        <div class="row mb-3">
+          <div class="col">
+            <small class="text-secondary">
+            Created by <%= link_to "@#{room.user.name}", "#", class: "text-decoration-none text-secondary" %>
+          </small>
+          </div>
+          <div class="col text-end">
+            <p class="card-text"><small class="text-body-secondary"><%= time_ago_in_words(room.created_at) %> ago</small></p>
+          </div>
+        </div>
+
+        <h3 class="display-6">
+          <%= link_to room.name, room_path(room), class: "text-dark text-decoration-none" %>
+        </h3>
+        <p class="lead">
+          <%= truncate(room.description, length: 70) %>
+        </p>
+
+        <hr class="my-3">
+
+        <div class="row">
+          <div class="col">
+            <small class="text-secondary">
+              <%# pluralize(room.participants.uniq.count, 'participant') %>
+              number of participants
+            </small>
+          </div>
+          <div class="col text-end">
+            <span class="badge rounded-pill text-bg-secondary">
+              <%# room.topic.name %>
+              topic name of this room
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-danger mt-3">No rooms found!</p>
+<% end %>

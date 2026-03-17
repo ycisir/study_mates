@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+
+    <!-- Brand -->
+    <%= link_to "StudyMates", root_path, class: "navbar-brand fw-bold" %>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+
+      <!-- Center Search -->
+      <form class="d-flex mx-lg-auto navbar-center my-3 my-lg-0">
+        <input class="form-control me-2" type="search" placeholder="Search rooms..." aria-label="Search">
+
+      </form>
+
+      <!-- Right User Menu -->
+      <ul class="navbar-nav ms-lg-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+              Account
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li>
+                  <%= link_to "Profile", "#", class: "dropdown-item" %>
+                </li>
+                <li>
+                  <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+                </li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li>
+                  <%= button_to "Logout", destroy_user_session_path, class: "dropdown-item text-danger", method: :delete %>
+                </li>
+            </ul>
+          </li>
+        <% else %>
+            <li>
+              <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-secondary" %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
