@@ -5,7 +5,7 @@ class Room < ApplicationRecord
 	belongs_to :topic
 	validates :name, presence: { message: "is required" }
 	validates :topic_name, presence: { message: "is required" }
-	validates :description, length: { minimum: 10, message: "must be at least 10 characters long" }
+	validates :description, length: { minimum: 5}
 	before_validation :clean_data
 
 	def topic_name
@@ -21,5 +21,6 @@ class Room < ApplicationRecord
 	def clean_data
 	    self.name = name.to_s.titleize
 	    self.topic_name = topic_name.to_s.titleize
+	    self.description = description.to_s.capitalize
 	end
 end
