@@ -1,8 +1,6 @@
 # StudyMates
 
-Building StudyMates
-A platform for professionals to connect and collaborate together.
-The project aims to make it easier to share resources and improve learning through collaboration.
+Developing a SaaS-based collaborative e-learning platform using Ruby on Rails
 
 ### Requirements
 - Ruby 3.4
@@ -20,4 +18,4 @@ rails s
 ```
 
 ### License
-This project is licensed under the MIT License. See the ```LICENSE``` file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
