@@ -4,8 +4,20 @@ class RoomsController < ApplicationController
   before_action :authorize_user, only: %i[ edit update destroy]
 
   def index
-    @topics = Topic.last(10)
-    @rooms = Room.includes(:user).order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+    # Shows topics with latest active rooms
+    @topics = Topic.joins(:rooms).group('topics.id').order('MAX(rooms.created_at) DESC').limit(10)
+
+    @rooms = Room.includes(:user)
+
+    if params[:q].present?
+      query = "%#{params[:q]}%"
+
+      topic = Topic.find_by(name: params[:q])
+
+      @rooms = topic ? topic.rooms.includes(:user) : @rooms.where('rooms.name ILIKE :q OR rooms.description ILIKE :q', q: query)
+    end
+
+    @rooms = @rooms.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
   end
 
   def show
