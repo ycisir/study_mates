@@ -13,9 +13,13 @@
     <div class="collapse navbar-collapse" id="navbarContent">
 
       <!-- Center Search -->
-      <%= form_with url: rooms_path, method: :get, local: true, html: { class: "d-flex mx-lg-auto navbar-center my-3 my-lg-0" } do %>
-        <%= text_field_tag :q, params[:q], placeholder: "Search rooms", class: "form-control me-2" %>
-      <% end %>
+      <div class="position-relative d-flex mx-lg-auto navbar-center my-3 my-lg-0">
+        <%= form_with url: search_rooms_path, method: :post, local: false do |f| %>
+          <%= f.search_field :q, placeholder: "Search rooms", oninput: "this.form.requestSubmit()", class: "form-control" %>
+        <% end %>
+
+        <div id="search_results"></div>
+      </div>
 
       <!-- Right User Menu -->
       <ul class="navbar-nav ms-lg-auto">
