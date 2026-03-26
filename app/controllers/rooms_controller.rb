@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
     # Shows topics with latest active rooms
     @topics = Topic.joins(:rooms).group('topics.id').order('MAX(rooms.created_at) DESC').limit(10)
 
-    @rooms = Room.includes(:user)
+    @rooms = Room.includes(:user, :topic)
 
     # Search filter
     if params[:q].present?
