@@ -9,12 +9,16 @@ class RoomsController < ApplicationController
 
     @rooms = Room.includes(:user)
 
+    # Search filter
     if params[:q].present?
       query = "%#{params[:q]}%"
 
-      topic = Topic.find_by(name: params[:q])
+      @rooms = @rooms.joins(:topic).where('rooms.name ILIKE :q OR rooms.description ILIKE :q OR topics.name ILIKE :q', q: query)
+    end
 
-      @rooms = topic ? topic.rooms.includes(:user) : @rooms.where('rooms.name ILIKE :q OR rooms.description ILIKE :q', q: query)
+    # Sidebar topic filter
+    if params[:topic_id].present?
+      @rooms = @rooms.where(topic_id: params[:topic_id])
     end
 
     @rooms = @rooms.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
