@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     confirmations: "users/confirmations",
     unlocks: "users/unlocks"
   }
-  resources :rooms
+  resources :rooms do
+    collection do
+      post :search
+    end
+  end
   root "rooms#index"
 end
