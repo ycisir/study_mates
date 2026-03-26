@@ -71,3 +71,5 @@ gem "dartsass-rails"
 gem "bootstrap"
 
 gem "will_paginate", "~> 4.0"
+
+gem "pundit", "~> 2.5"
