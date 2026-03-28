@@ -4,6 +4,6 @@
 <p><%= @room.description %></p>
 <p>created by: <i><%= @room.user.email %></i></p>
 
-<%= link_to "Back", rooms_path %>
+<%= link_to "Back", :back %>
 <%= link_to "Edit", edit_room_path(@room) %>
 <%= button_to "Delete", room_path(@room), method: :delete, data: { turbo_confirm: "Are you sure?" } if admin? %>
