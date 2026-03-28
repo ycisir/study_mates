@@ -1,14 +1,13 @@
 <% @rooms.each do |room| %>
 
-  <div class="card shadow-sm border-0 mb-4 room-card">
+  <div class="card shadow-sm border-0 mb-4">
     <div class="card-body p-4">
 
       <!-- Header -->
       <div class="d-flex justify-content-between align-items-center mb-2">
         <small class="text-muted">
           Created by
-          <%= link_to "@#{room.user.name}", "#",
-              class: "text-decoration-none fw-medium text-dark" %>
+          <%= link_to room.user.name, profile_path(room.user), class: "text-decoration-none fw-medium text-dark" %>
         </small>
 
         <small class="text-muted">
@@ -18,7 +17,7 @@
 
       <!-- Room Title -->
       <h4 class="fw-semibold mb-2">
-        <%= link_to room.name, room_path(room), class: "text-decoration-none text-dark stretched-link" %>
+        <%= link_to room.name, room_path(room), class: "text-decoration-none text-dark" %>
       </h4>
 
       <!-- Description -->
@@ -34,7 +33,7 @@
         <small class="text-muted">
           <i class="bi bi-people me-1"></i>
           <%# pluralize(room.participants.uniq.count, "participant") %>
-          Number of participant
+          Participant
         </small>
 
         <span class="badge bg-secondary-subtle text-dark">
@@ -47,3 +46,4 @@
   </div>
 
 <% end %>
+<%= will_paginate @rooms, class: "pagination justify-content-center" %>
