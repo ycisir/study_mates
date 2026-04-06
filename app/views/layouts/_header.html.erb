@@ -15,16 +15,20 @@
       </div>
 
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Username
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-          </ul>
-        </li>
+        <% if signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <%= link_to "Profile", current_user, class: "dropdown-item" %>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <%= link_to "Sign out", signout_path, data: { "turbo-method": :delete }, class: "dropdown-item" %>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Sign in", signin_path, class: "btn btn-success" %></li>
+        <% end %>
       </ul>
     </div>
   </div>

@@ -1,9 +1,9 @@
 <% provide(:title, 'Sign up') %>
 
 <div class="row">
-	<div class="col-md-6 offset-3">
+	<div class="col-md-6 offset-md-3">
 
-		<h1>Sign up</h1>
+		<h1 class="mb-3">Sign up</h1>
 
 		<%= form_with(model: @user) do |f| %>
 
@@ -31,5 +31,7 @@
 
 			<%= f.submit "Create my account", class: "btn btn-primary" %>
 		<% end %>
+
+		<p class="my-3">Already have an account? <%= link_to "Sign in", signin_path %></p>
 	</div>
 </div>
