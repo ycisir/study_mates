@@ -28,7 +28,7 @@ cd study_mates
 bundle install
 rails db:drop db:create db:migrate db:seed
 rails t
-raills s
+rails s
 ```
 Server runs at `http://127.0.0.1:3000/`
 
