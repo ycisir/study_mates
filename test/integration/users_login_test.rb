@@ -66,3 +66,45 @@ class SignOutTest < SignOut
     assert_select "a[href=?]", user_path(@user), count: 0
   end
 end
+
+class UsersSignInTest < UsersSignIn
+  test "sign in with valid information followed by sign out" do
+    post signin_path, params: { session: { email: @user.email, password: "password"} }
+    assert is_signed_in?
+    assert_redirected_to @user
+    follow_redirect!
+    assert_template 'users/show'
+    assert_select "a[href=?]", signin_path, count: 0
+    assert_select "a[href=?]", signout_path
+    assert_select "a[href=?]", user_path(@user)
+    delete signout_path
+    assert_response :see_other
+    assert_not is_signed_in?
+    assert_redirected_to root_url
+    delete signout_path
+    follow_redirect!
+    assert_select "a[href=?]", signin_path
+    assert_select "a[href=?]", signout_path, count: 0
+    assert_select "a[href=?]", user_path(@user), count: 0
+  end
+end
+
+class SignOutTest < SignOut
+  test "should still work after logout in second window" do
+    delete signout_path
+    assert_redirected_to root_url
+  end
+end
+
+class RememberingTest < UsersSignIn
+  test "sign in with remembering" do
+    sign_in_as(@user, remember_me: '1')
+    assert_not cookies[:remember_token].blank?
+  end
+
+  test "sign in without remembering" do
+    sign_in_as(@user, remember_me: '1')
+    sign_in_as(@user, remember_me: '0')
+    assert cookies[:remember_token].blank?
+  end
+end

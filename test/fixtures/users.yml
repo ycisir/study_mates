@@ -3,3 +3,4 @@ harry:
   name: Harry Potter
   email: harry@example.com
   password_digest: <%= User.digest('password') %>
+  slug: harry-potter

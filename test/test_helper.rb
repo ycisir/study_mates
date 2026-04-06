@@ -14,5 +14,16 @@ module ActiveSupport
     def is_signed_in?
       !session[:user_id].nil?
     end
+
+    def sign_in_as(user)
+      session[:user_id] = user.id
+    end
+  end
+end
+
+
+class ActionDispatch::IntegrationTest
+  def sign_in_as(user, password: 'password', remember_me: '1')
+    post signin_path, params: { session: { email: user.email, password: password, remember_me: remember_me } }
   end
 end
