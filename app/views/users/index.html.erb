@@ -1,0 +1,11 @@
+<% provide(:title, 'All users') %>
+
+<h1 class="mb-3">All users</h1>
+
+<%= will_paginate %>
+
+<ul class="list-group list-group-flush mb-3">
+	<%= render @users %>
+</ul>
+
+<%= will_paginate %>

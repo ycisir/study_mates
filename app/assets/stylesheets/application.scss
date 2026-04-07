@@ -3,3 +3,11 @@
 .search-bar {
 	padding: 3px 25px !important;
 }
+
+ul.pagination li {
+	margin-right: 5px;
+
+	a {
+		text-decoration: none;
+	}
+}

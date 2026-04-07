@@ -1,7 +1,61 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @user = users(:harry)
+    @other_user = users(:ron)
+  end
+
+  test "should get new" do
+    get signup_path
+    assert_response :success
+  end
+
+  test "should redirect index when not signed in" do
+    get users_path
+    assert_redirected_to signin_url
+  end
+
+  test "should redirect edit when not signed in" do
+    get edit_user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to signin_url
+  end
+
+  test "should redirect update when not signed in" do
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
+    assert_not flash.empty?
+    assert_redirected_to signin_url
+  end
+
+  test "should redirect edit when signed in as wrong user" do
+    sign_in_as(@other_user)
+    get edit_user_path(@user)
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect update when signed in as wrong user" do
+    sign_in_as(@other_user)
+    patch user_path(@user), params: { user: { name: @user.name, email: @user.email } }
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "should redirect destroy when not signed in" do
+    assert_no_difference 'User.count' do
+      delete user_path(@user)
+    end
+    assert_response :see_other
+    assert_redirected_to signin_url
+  end
+
+  test "should redirect destroy when signed in as a non-admin" do
+    sign_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete user_path(@user)
+    end
+    assert_response :see_other
+    assert_redirected_to root_url
+  end
 end

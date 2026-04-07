@@ -16,10 +16,10 @@ Developing a SaaS-based collaborative e-learning platform
 - Personalized content feed
 
 ### Prerequisites
+- PostgreSQL
 - Rbenv (Ruby environment manager)
-- Ruby 3.2.1
 - Redis
-- SQLite
+- Ruby 3.2.1
 
 ### Local setup
 ```bash
@@ -31,6 +31,3 @@ rails t
 rails s
 ```
 Server runs at `http://127.0.0.1:3000/`
-
-### Assumptions
-- SQLite used for simplicity
