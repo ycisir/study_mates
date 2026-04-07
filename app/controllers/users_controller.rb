@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 	def index
 		@users = User.paginate(page: params[:page])
 		if params[:q].present?
-			debugger
 			@users = @users.where('name ILIKE :q', q: "%#{params[:q]}%")
 		end
 	end
@@ -52,7 +51,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :email, :password, :password_confirmation)
+		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
 	end
 
 	def signed_in_user

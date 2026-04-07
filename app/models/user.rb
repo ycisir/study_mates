@@ -1,7 +1,11 @@
 class User < ApplicationRecord
 	attr_accessor :remember_token
-
 	before_save { email.downcase! }
+
+	has_one_attached :avatar do |attachable|
+	    attachable.variant :thumb, resize_to_limit: [30, 30]
+	    attachable.variant :profile, resize_to_limit: [100, 100]
+	end
 	validates :name, presence: true, length: { maximum: 50 }
 	extend FriendlyId
 	friendly_id :name, use: :slugged
