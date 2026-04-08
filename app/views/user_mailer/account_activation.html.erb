@@ -1,0 +1,7 @@
+<h1>StudyMates</h1>
+
+<p>Hey <%= @user.name %>,</p>
+
+<p>Welcome to StudyMates! click on the link below to activate your account:</p>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post "/signin", to: "sessions#create"
   delete "/signout", to: "sessions#destroy"
   resources :users, param: :slug
+  resources :account_activations, only: [ :edit ]
   root "static_pages#home"
 end

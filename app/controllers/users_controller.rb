@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_action :admin_user, only: %i[ destroy ]
 
 	def index
-		@users = User.paginate(page: params[:page])
+		@users = User.where(activated: true).paginate(page: params[:page])
 		if params[:q].present?
 			@users = @users.where('name ILIKE :q', q: "%#{params[:q]}%")
 		end
@@ -12,19 +12,20 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.friendly.find(params[:slug])
+		redirect_to root_url and return unless @user.activated
 	end
 
 	def new
+		redirect_to(root_url, status: :see_other) if signed_in?
 		@user = User.new
 	end
 
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			reset_session
-			sign_in @user
-			flash[:success] = "Welcome to StudyMates"
-			redirect_to @user
+			UserMailer.account_activation(@user).deliver_now
+			flash[:info] = "Please check your email to activate your account."
+			redirect_to root_url
 		else
 			render :new, status: :unprocessable_entity
 		end

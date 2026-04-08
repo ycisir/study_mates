@@ -4,9 +4,13 @@ harry:
   email: harry@example.com
   password_digest: <%= User.digest('password') %>
   slug: harry-potter
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 ron:
   name: Ron Weasely
   email: ron@example.com
   password_digest: <%= User.digest('password') %>
   slug: ron-weasely
+  activated: true
+  activated_at: <%= Time.zone.now %>
