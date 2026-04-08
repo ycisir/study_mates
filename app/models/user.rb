@@ -8,6 +8,8 @@ class User < ApplicationRecord
 	    attachable.variant :profile, resize_to_limit: [100, 100]
 	end
 
+	has_many :rooms, dependent: :destroy
+
 	validates :name, presence: true, length: { maximum: 50 }
 	extend FriendlyId
 	friendly_id :name, use: :slugged
