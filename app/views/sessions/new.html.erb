@@ -12,6 +12,7 @@
 
 			<div class="mb-3">
 				<%= f.label :password %>
+				<%= link_to "(forgot password)", new_password_reset_path, class: "text-decoration-none" %>
 				<%= f.password_field :password, class: 'form-control' %>
 			</div>
 
@@ -27,7 +28,7 @@
 			</div>
 		<% end %>
 
-		<p class="my-3">New user? <%= link_to "Sign up now!", signup_path %></p>
+		<p class="my-3">New user? <%= link_to "Sign up now!", signup_path, class: "text-decoration-none" %></p>
 
 	</div>
 </div>

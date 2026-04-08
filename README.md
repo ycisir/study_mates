@@ -7,6 +7,7 @@ Developing a SaaS-based collaborative e-learning platform
 - Rooms CRUD
 - Authentication
 - Account activation
+- Password reset
 - Authorization
 - Real time messaging
 - Activity
@@ -27,7 +28,6 @@ git clone https://github.com/ycisir/study_mates.git
 cd study_mates
 bundle install
 rails db:drop db:create db:migrate db:seed
-rails t
-rails s
+rails t && rails s
 ```
 Server runs at `http://127.0.0.1:3000/`

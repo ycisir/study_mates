@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   delete "/signout", to: "sessions#destroy"
   resources :users, param: :slug
   resources :account_activations, only: [ :edit ]
+  resources :password_resets, only: [ :new, :create, :edit, :update ]
   root "static_pages#home"
 end
