@@ -12,7 +12,7 @@
 
   <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "Delete", user,
-        class: "btn btn-link",
+        class: "text-decoration-none small",
         data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
   <% end %>
 
