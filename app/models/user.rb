@@ -9,6 +9,7 @@ class User < ApplicationRecord
 	end
 
 	has_many :rooms, dependent: :destroy
+	has_and_belongs_to_many :joined_rooms, class_name: "Room", dependent: :destroy
 
 	validates :name, presence: true, length: { maximum: 50 }
 	extend FriendlyId

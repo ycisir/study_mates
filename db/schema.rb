@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_04_08_171149) do
+ActiveRecord::Schema[7.2].define(version: 2026_04_09_100841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,12 @@ ActiveRecord::Schema[7.2].define(version: 2026_04_08_171149) do
     t.index ["slug"], name: "index_rooms_on_slug", unique: true
     t.index ["topic_id"], name: "index_rooms_on_topic_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "rooms_users", id: false, force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["room_id", "user_id"], name: "index_rooms_users_on_room_id_and_user_id", unique: true
   end
 
   create_table "topics", force: :cascade do |t|
