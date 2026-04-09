@@ -3,6 +3,7 @@ class Room < ApplicationRecord
   belongs_to :topic
   belongs_to :user # host
   has_and_belongs_to_many :participants, class_name: "User", dependent: :destroy
+  has_many :messages, dependent: :destroy
   extend FriendlyId
   friendly_id :name, use: :slugged
   validates :name, presence: true, length: { maximum: 50 }

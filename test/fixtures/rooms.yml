@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: "Test room"
+ruby:
+  name: "Ruby room"
   info: "This is test room info."
   topic: rails
   user: harry
 
-one:
-  name: "Test room 2"
+rails:
+  name: "Rails room"
   info: "This is test room info 2."
   topic: ruby
   user: ron

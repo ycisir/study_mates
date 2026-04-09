@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hey:
+  body: "Hey"
+  room: ruby
+  user: ron
+
+hi:
+  body: "Hi"
+  room: ruby
+  user: harry
