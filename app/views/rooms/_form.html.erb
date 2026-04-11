@@ -1,0 +1,34 @@
+<%= form_with(model: @room) do |f| %>
+
+	<% if @room.errors.any? %>
+		<div id="error_explanation">
+			<div class="alert alert-danger">
+				The form contains <%= pluralize(@room.errors.count, "error") %>.
+			</div>
+			<ul>
+				<% @room.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="mb-3">
+		<%= f.label "Name" %>
+		<%= f.text_field :name, class: 'form-control' %>
+	</div>
+
+	<div class="mb-3">
+		<%= f.label "Topic" %>
+		<%= f.text_field :topic_name, class: 'form-control' %>
+	</div>
+
+	<div class="mb-3">
+		<%= f.label "Info" %>
+		<%= f.text_area :info, class: 'form-control' %>
+	</div>
+
+	<div class="d-grid">
+		<%= f.submit "Create", class: "btn btn-primary" %>
+	</div>
+<% end %>

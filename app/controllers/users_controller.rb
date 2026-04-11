@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.where(activated: true).paginate(page: params[:page])
-		if params[:q].present?
-			@users = @users.where('name ILIKE :q', q: "%#{params[:q]}%")
-		end
 	end
 
 	def show
@@ -53,14 +50,6 @@ class UsersController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
-	end
-
-	def signed_in_user
-		unless signed_in?
-			store_location
-			flash[:danger] = "Please sign in"
-			redirect_to signin_url, status: :see_other
-		end
 	end
 
 	def correct_user

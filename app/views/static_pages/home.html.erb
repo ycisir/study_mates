@@ -1,2 +1,17 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<div class="row">
+	<div class="col-md-2">
+		<h5 class="fw-light">Topics</h5>
+	</div>
+	<div class="col-md-7">
+		<div class="d-flex justify-content-between align-items-center">
+			<h5 class="fw-light">Rooms (<%= @rooms.count %>)</h5>
+			<% if signed_in? %>
+				<%= link_to "Create room", new_room_path, class: "text-decoration-none" %>
+			<% end %>
+		</div>
+		<%= render "rooms" %>
+	</div>
+	<div class="col-md-3">
+		<h5 class="fw-light">Activity</h5>
+	</div>
+</div>

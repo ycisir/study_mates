@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Confirms a signed-in user.
+  def signed_in_user
+    unless signed_in?
+      store_location
+      flash[:danger] = "Please sign in"
+      redirect_to signin_url, status: :see_other
+    end
+  end
+
   def record_not_found
     flash[:danger] = "Record not found!"
     redirect_to root_url

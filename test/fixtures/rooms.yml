@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 ruby:
-  name: "Ruby room"
-  info: "This is test room info."
+  name: Ruby room
+  info: This is test ruby room info
   topic: rails
   user: harry
+  created_at: <%= 10.minutes.ago %>
 
 rails:
-  name: "Rails room"
-  info: "This is test room info 2."
+  name: Rails room
+  info: This is test rails room info
   topic: ruby
   user: ron
+  created_at: <%= 1.minutes.ago %>

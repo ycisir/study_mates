@@ -1,0 +1,22 @@
+<ul class="list-group mb-3">
+  <% @rooms.each do |room| %>
+    <li class="border-bottom mb-2 list-group-item border-0 rounded-0 d-flex align-items-start">
+      <div>
+        <span class="d-block">
+          <%= link_to room.host.name, user_path(room.host), class: "text-decoration-none small" %>
+        </span>
+
+        <span class="my-1 fw-light">
+          <%= link_to room.name, room_path(room), class: "text-decoration-none text-dark" %>
+          (<span><%= room.topic.name %></span>)
+        </span>
+
+        <span class="text-muted small d-block">
+          <%= time_ago_in_words(room.created_at) %> ago
+        </span>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @rooms %>

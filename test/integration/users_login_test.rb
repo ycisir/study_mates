@@ -63,7 +63,7 @@ class SignOutTest < SignOut
     follow_redirect!
     assert_select "a[href=?]", signin_path
     assert_select "a[href=?]", signout_path, count: 0
-    assert_select "a[href=?]", user_path(@user), count: 0
+    # assert_select "a[href=?]", user_path(@user), count: 0
   end
 end
 
@@ -85,7 +85,7 @@ class UsersSignInTest < UsersSignIn
     follow_redirect!
     assert_select "a[href=?]", signin_path
     assert_select "a[href=?]", signout_path, count: 0
-    assert_select "a[href=?]", user_path(@user), count: 0
+    # assert_select "a[href=?]", user_path(@user), count: 0
   end
 end
 

@@ -1,0 +1,58 @@
+<% provide(:title, @room.name) %>
+
+<div class="row">
+	<div class="col-md-10 mb-3">
+
+		<div class="pb-1 d-flex flex-column" style="height: 770px;">
+			<div class="p-3">
+			    <h5 class="mb-0"><%= @room.name %></h5>
+			    <small class="mb-0 text-muted"><%= @room.info %></small>
+
+			    <% if signed_in? && (current_user.admin? || current_user?(@room.host)) %>
+				    <%= link_to "Delete", @room, class: "text-decoration-none small", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+			    <% end %>
+			</div>
+
+		    <!-- Messages (Scrollable) -->
+		    <div class="flex-grow-1 overflow-auto p-3 bg-light rounded">
+		      <div class="mb-2">Hello 👋</div>
+		      <div class="mb-2">How are you?</div>
+		      <div class="mb-2">This area scrolls...</div>
+		      <div class="mb-2">Message 4</div>
+		      <div class="mb-2">Message 5</div>
+		      <div class="mb-2">Message 6</div>
+		      <div class="mb-2">Message 7</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		      <div class="mb-2">Message 8</div>
+		      <div class="mb-2">Message 9</div>
+		      <div class="mb-2">Message 10</div>
+		    </div>
+
+		    <!-- Input (Fixed Bottom) -->
+		    <div class="p-2">
+		      <div class="input-group">
+		        <input type="text" class="form-control" placeholder="Type message...">
+		        <button class="btn btn-primary">Send</button>
+		      </div>
+		    </div>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= render "participants" %>
+	</div>
+
+</div>
