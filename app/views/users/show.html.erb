@@ -8,4 +8,9 @@
 		  <h5 class="mb-0"><%= @user.name %></h5>
 		</section>
 	</aside>
+
+	<aside class="col-md-8">
+		<h5 class="fw-light">Rooms (<%= @rooms.count %>)</h5>
+		<%= render 'static_pages/rooms' %>
+	</aside>
 </div>

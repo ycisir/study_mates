@@ -33,7 +33,7 @@
 			<% if @user.avatar.attached? %>
 				<%= image_tag @user.avatar.variant(:thumb) %>
 			<% end %>
-			<%= f.file_field :avatar %>
+			<%= f.file_field :avatar, id: "avatar-upload", class: "form-control" %>
 		</div>
 	<% end %>
 <% end %>

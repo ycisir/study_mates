@@ -8,15 +8,15 @@ class Room < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   validates :name, presence: true, length: { maximum: 50 }
-  validates :info, presence: true, length: { minimum: 10, maximum: 50 }
+  validates :info, presence: true, length: { minimum: 10, maximum: 100 }
 
   def host
     user
   end
 
-  scope :feed, -> {
-    includes(:user, :topic).order(created_at: :desc)
-  }
+  scope :recent, -> { order(created_at: :desc) }
+  scope :feed, -> { includes(:user, :topic).recent  }
+  scope :by_host, ->(user_id) { where(user_id: user_id).recent }
 
   private
 

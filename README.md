@@ -4,7 +4,7 @@ Developing a SaaS-based collaborative e-learning platform
 ### Features
 - Role based user management
 - User relationships (follow/unfollow)
-- Rooms CRUD
+- Rooms management
 - Authentication
 - Account activation
 - Password reset
@@ -28,6 +28,10 @@ git clone https://github.com/ycisir/study_mates.git
 cd study_mates
 bundle install
 rails db:drop db:create db:migrate db:seed
+# -------------------------------------------------------------------------
+# if made any changes in css or js files make sure run these two commands
+rails assets:clobber && rails assets:precompile
+# -------------------------------------------------------------------------
 rails t && rails s
 ```
 Server runs at `http://127.0.0.1:3000/`

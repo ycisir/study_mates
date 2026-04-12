@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.friendly.find(params[:slug])
+		@rooms = Room.by_host(@user).paginate(page: params[:page], per_page: 10)
 		redirect_to root_url and return unless @user.activated
 	end
 

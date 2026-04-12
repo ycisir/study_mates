@@ -1,0 +1,16 @@
+<div class="p-2">
+   <%= form_with(model: message, local: true, html: { multipart: true, class: "w-100" }) do |f| %>
+      <div class="input-group flex-wrap">
+         <%= f.file_field :files, multiple: true, id: "file-upload", class: "d-none" %>
+         <button type="button" class="btn border" id="upload-trigger">
+           📎
+           <span class="small" id="file-count"></span>
+         </button>
+
+         <%= f.text_field :body, placeholder: "Type message...", class: "form-control", id: "message-body" %>
+         <%= f.submit "Send", class: "btn btn-primary", id: "send-button", disabled: true %>
+    </div>
+
+    <%= f.hidden_field :room_id, value: room.id %>
+   <% end %>
+</div>
