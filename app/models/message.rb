@@ -6,6 +6,9 @@ class Message < ApplicationRecord
   end
   after_create :add_user_to_room_participants_list
 
+  scope :recent, -> { order(created_at: :desc).first(9) }
+  scope :activity_feed, -> { includes(:user, :room).recent  }
+
   private
 
   def add_user_to_room_participants_list

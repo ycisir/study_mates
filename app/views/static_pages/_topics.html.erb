@@ -1,5 +1,5 @@
 <h5 class="fw-light">Topics <small class="text-muted">(<%= Topic.joins(:rooms).distinct.count %>)</small></h5>
-<ul class="list-group">
+<ul class="list-group mb-3">
 	<li class="list-group-item border-0 rounded-0 pb-0">
 		<%= link_to "All", rooms_path, class: "text-decoration-none small" %>
 		<small class="text-muted">(<%= Room.count %>)</small>

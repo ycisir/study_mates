@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_one_attached :avatar do |attachable|
 	    attachable.variant :thumb, resize_to_limit: [30, 30]
 	    attachable.variant :profile, resize_to_limit: [100, 100]
+	    attachable.variant :activity_thumb, resize_to_limit: [20, 20]
 	end
 
 	has_many :rooms, dependent: :destroy

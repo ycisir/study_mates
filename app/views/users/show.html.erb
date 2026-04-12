@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-	<aside class="col-md-4">
+	<aside class="col-md-4 mb-3">
 		<section class="d-flex align-items-start">
 		  <% if @user.avatar.attached? %>
 		    <%= image_tag @user.avatar.variant(:profile), class: "me-2" %>

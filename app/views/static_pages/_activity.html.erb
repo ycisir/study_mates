@@ -1,0 +1,30 @@
+<h5 class="fw-light mb-3">Recent activity</h5>
+
+<ul>
+  <% @messages.each do |message| %>
+    <li class="list-group-item mb-2 p-2">
+      <div class="text-muted small">
+
+          <% if message.user.avatar.attached? %>
+          	<%= image_tag message.user.avatar.variant(:activity_thumb) %>
+          <% end %>
+
+        <%= link_to message.user.name, user_path(message.user), class: "text-decoration-none" %>
+
+        <div>
+          <% if message.body.present? %>
+          	replied 
+          	<span class="text-dark"><%= message.body %></span>
+          <% else %>
+          	sent attachments
+          <% end %>
+
+          <div>
+            <%= time_ago_in_words(message.created_at) %> ago in
+            <%= link_to message.room.name, room_path(message.room), class: "text-decoration-none" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
