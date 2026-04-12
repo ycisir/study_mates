@@ -7,6 +7,23 @@
 		  <% end %>
 		  <h5 class="mb-0"><%= @user.name %></h5>
 		</section>
+
+		<div class="mt-3">
+			<ul class="list-group">
+				<li class="list-group-item border-0 p-0">
+					<% if signed_in? && current_user.admin? %>
+					<h6>
+						<%= link_to "Users", users_path, class: "text-decoration-none fw-light" %>
+						<small class="text-muted">(<%= User.activated.count %>)</small>
+					</h6>
+					<h6>
+						<%= link_to "Rooms", rooms_path, class: "text-decoration-none fw-light" %>
+						<small class="text-muted">(<%= Room.feed.count %>)</small>
+					</h6>
+					<% end %>
+				</li>
+			</ul>
+		</div>
 	</aside>
 
 	<aside class="col-md-8">

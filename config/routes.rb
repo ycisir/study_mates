@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/rooms", to: "static_pages#home"
   post "/signin", to: "sessions#create"
   delete "/signout", to: "sessions#destroy"
+  get "search", to: "search#index"
   resources :users, param: :slug
   resources :account_activations, only: %i[ edit ]
   resources :password_resets, only: %i[ new create edit update ]

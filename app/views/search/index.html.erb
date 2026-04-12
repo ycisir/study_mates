@@ -1,0 +1,39 @@
+<% provide(:title, 'Search') %>
+
+<h4 class="text-left pb-2 border-bottom">Searched for <%= highlight(params[:q], params[:q]) %></h1>
+
+<div class="p-3">
+	<ul class="list-group">
+		<div class="mb-3">
+			<% if @rooms.any? %>
+				<h5 class="fw-light">Rooms <small class="text-muted">(<%= @rooms.count %>)</small></h5>
+				<% @rooms.each do |room| %>
+					<li class="border-0 list-group-item rounded-0">
+						<h6 class="mb-0">
+							<%= link_to room.name, room_path(room), class: "text-decoration-none fw-light" %>
+						</h6>
+					</li>
+				<% end %>
+			<% end %>
+		</div>
+
+		<div>
+			<% if @users.any? %>
+				<h5 class="fw-light">Users <small class="text-muted">(<%= @users.count %>)</small></h5>
+				<% @users.each do |user| %>
+					<li class="border-0 list-group-item rounded-0">
+						<div class="d-flex align-items-center">
+							<% if user.avatar.attached? %>
+								<%= image_tag user.avatar.variant(:thumb), class: "me-1" %>
+							<% end %>
+
+							<h6 class="mb-0">
+								<%= link_to user.name, user, class: "text-decoration-none fw-light" %>
+							</h6>
+						</div>
+					</li>
+				<% end %>
+			<% end %>
+		</div>
+	</ul>
+</div>

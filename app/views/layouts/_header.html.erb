@@ -11,7 +11,7 @@
 
     <div class="collapse navbar-collapse" id="navbarContent">
       <div class="mx-auto my-2 my-lg-0">
-        <%= form_with url: (users_path || root_path), method: :get, local: true, html: { class: "w-100" } do %>
+        <%= form_with url: search_path, method: :get, local: true, html: { class: "w-100" } do %>
           <%= search_field_tag :q, params[:q], placeholder: "Search users and rooms", class: "form-control search-bar" %>
         <% end %>
       </div>
@@ -29,7 +29,7 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to "Sign in", signin_path, class: "nav-link" %></li>
+          <li><%= link_to "Sign in", signin_path, class: "btn btn-sm btn-outline-light" %></li>
         <% end %>
       </ul>
     </div>

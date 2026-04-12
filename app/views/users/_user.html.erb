@@ -10,7 +10,7 @@
     </h6>
   </div>
 
-  <% if current_user.admin? && !current_user?(user) %>
+  <% if signed_in? && current_user.admin? && !current_user?(user) %>
     <%= link_to "Delete", user,
         class: "text-decoration-none small",
         data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>

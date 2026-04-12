@@ -18,6 +18,7 @@ class Room < ApplicationRecord
   scope :feed, -> { includes(:user, :topic).recent  }
   scope :by_host, ->(user_id) { where(user_id: user_id).recent }
   scope :by_topic, ->(topic) { where(topic: topic) }
+  scope :search, ->(q) { where("name ILIKE ?", "%#{q}%") }
 
   private
 

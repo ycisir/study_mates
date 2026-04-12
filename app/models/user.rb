@@ -21,6 +21,9 @@ class User < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+	scope :search, ->(q) { where("name ILIKE ?", "%#{q}%") }
+	scope :activated, -> { where(activated: true) }
+
 	# Activates an account.
 	def activate
 		update_columns(activated: true, activated_at: Time.current)
