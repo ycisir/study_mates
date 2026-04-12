@@ -1,4 +1,4 @@
-<h5 class="fw-light">Participants (<%= @room.participants.count + 1 %>)</h5>
+<h5 class="fw-light">Participants <small class="text-muted">(<%= @room.participants.count + 1 %>)</small></h5>
 <ul class="list-group">
 	<li class="list-group-item border-0 rounded-0 pb-0">
 		<% if @room.user.avatar.attached? %>

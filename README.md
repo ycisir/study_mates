@@ -15,6 +15,7 @@ Developing a SaaS-based collaborative e-learning platform
 - Search functionality
 - Pagination
 - Personalized content feed
+- SEO friendly URL
 
 ### Prerequisites
 - PostgreSQL
