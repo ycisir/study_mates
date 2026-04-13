@@ -1,26 +1,24 @@
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 # StudyMates
-Developing a SaaS-based collaborative e-learning platform
+Built a SaaS-based collaborative e-learning platform to enable real-time interaction and content sharing.
 
 ### Features
 - Role based user management
 - User relationships (follow/unfollow)
 - Rooms management
-- Authentication
-- Account activation
-- Password reset
-- Authorization
+- Authentication and Authorization
+- Account activation and Password reset email
 - Real time messaging
-- Activity
-- Topic based rooms filtering
-- Search functionality
-- Pagination
+- Recent activity and Topic based rooms filtering
+- Search functionality and Pagination
 - Personalized content feed
 - SEO friendly URL
 
 ### Prerequisites
-- PostgreSQL
+- PostgreSQL (Should be installed on local machine)
 - Rbenv (Ruby environment manager)
-- Redis
+- Redis (Should be installed on local machine)
 - Ruby 3.2.1
 
 ### Local setup
@@ -36,3 +34,6 @@ rails assets:clobber && rails assets:precompile
 rails t && rails s
 ```
 Server runs at `http://127.0.0.1:3000/`
+
+### License
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for full details.
