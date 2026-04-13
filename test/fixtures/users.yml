@@ -14,3 +14,11 @@ ron:
   slug: ron-weasely
   activated: true
   activated_at: <%= Time.zone.now %>
+
+jack:
+  name: Jack Sparrow
+  email: jack@example.com
+  password_digest: <%= User.digest('password') %>
+  slug: jack-sparrow
+  activated: true
+  activated_at: <%= Time.zone.now %>

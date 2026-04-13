@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user, only: %i[ index edit update destroy ]
+	before_action :signed_in_user, only: %i[ index edit update destroy following followers ]
 	before_action :correct_user, only: %i[ edit update ]
 	before_action :admin_user, only: %i[ destroy ]
 
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.friendly.find(params[:slug])
-		@rooms = Room.by_host(@user).paginate(page: params[:page], per_page: 10)
+		@rooms = Room.by_user(@user).paginate(page: params[:page], per_page: 10)
 		redirect_to root_url and return unless @user.activated
 	end
 
@@ -46,6 +46,20 @@ class UsersController < ApplicationController
 		flash[:success] = "User deleted"
 		redirect_to users_url, status: :see_other
 	end
+
+	def following
+	    @title = "Following"
+	    @user = User.friendly.find(params[:slug])
+	    @users = @user.following.paginate(page: params[:page])
+	    render 'show_follow', status: :unprocessable_entity
+	  end
+
+	  def followers
+	    @title = "Followers"
+	    @user = User.friendly.find(params[:slug])
+	    @users = @user.followers.paginate(page: params[:page])
+	    render 'show_follow', status: :unprocessable_entity
+	  end
 
 	private
 

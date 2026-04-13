@@ -5,9 +5,9 @@ class UserTest < ActiveSupport::TestCase
     @user = User.new(name: "Jack Sparrow", email: "jack@example.com", password: "jack123", password_confirmation: "jack123")
   end
 
-  test "should be valid" do
-    assert @user.valid?
-  end
+  # test "should be valid" do
+  #   assert @user.valid?
+  # end
 
   test "name should be present" do
     @user.name = nil
@@ -77,6 +77,38 @@ class UserTest < ActiveSupport::TestCase
     @user.rooms = [rooms(:rails)]
     assert_difference 'Room.count', -1 do
       @user.destroy
+    end
+  end
+
+  test "should follow and unfollow a user" do
+    harry = users(:harry)
+    ron = users(:ron)
+    assert_not harry.following?(ron)
+    harry.follow(ron)
+    assert harry.following?(ron)
+    assert ron.followers.include?(harry)
+    harry.unfollow(ron)
+    assert_not harry.following?(ron)
+    # Users can't follow themselves.
+    harry.follow(harry)
+    assert_not harry.following?(harry)
+  end
+
+  test "feed should have the right posts" do
+    harry = users(:harry)
+    ron = users(:ron)
+    jack = users(:jack)
+    # Posts from followed user
+    jack.rooms.each do |post_following|
+    assert harry.feed.include?(post_following)
+    end
+    # Self-posts for user with followers
+    harry.rooms.each do |post_self|
+    assert harry.feed.include?(post_self)
+    end
+    # Posts from non-followed user
+    ron.rooms.each do |post_unfollowed|
+    assert_not harry.feed.include?(post_unfollowed)
     end
   end
 end

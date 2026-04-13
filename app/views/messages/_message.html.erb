@@ -1,5 +1,5 @@
 <div class="mb-2">
-	<%= link_to message.user.name, user_path(message.user), class: "text-decoration-none small" %> : <%= message.body %>
+	<%= link_to message.user.name, user_path(message.user), class: "text-decoration-none small" %>: <%= message.body %>
 
 	<% if message.files.attached? %>
         <div class="d-flex flex-wrap gap-2">

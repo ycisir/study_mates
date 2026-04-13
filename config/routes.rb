@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   post "/signin", to: "sessions#create"
   delete "/signout", to: "sessions#destroy"
   get "search", to: "search#index"
-  resources :users, param: :slug
+  resources :users, param: :slug do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: %i[ edit ]
   resources :password_resets, only: %i[ new create edit update ]
   resources :rooms, only: %i[ new create show destroy ], param: :slug
   resources :messages, only: %i[ create ]
+  resources :relationships, only: %i[ create destroy]
   root "static_pages#home"
 end
