@@ -70,7 +70,6 @@ rooms = []
 
   # Ensure creator is always a participant
   participants = users.sample(rand(5..10))
-  participants << creator
 
   participants.uniq.each do |user|
     room.participants << user unless room.participants.include?(user)
