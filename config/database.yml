@@ -83,6 +83,5 @@ test:
 #
 production:
   <<: *default
-  database: study_mates_production
-  username: study_mates
-  password: <%= ENV["STUDY_MATES_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

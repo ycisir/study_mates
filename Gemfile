@@ -36,3 +36,5 @@ gem "will_paginate", "~> 3.3.1"
 gem "faker", "~> 3.5"
 gem "image_processing", "1.12.2"
 gem "redis", "~> 5.4"
+
+gem "dotenv-rails", "~> 3.2"
