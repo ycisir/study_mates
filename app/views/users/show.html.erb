@@ -9,7 +9,7 @@
 	</aside>
 
 	<aside class="col-md-8">
-		<h5 class="fw-light">Rooms <%= (signed_in? && current_user == @user) ? "you" : @user.name.downcase %> created (<%= @rooms.count %>)</h5>
+		<h5 class="fw-light">Rooms (<%= @rooms.count %>)</h5>
 		<%= render 'static_pages/rooms' %>
 	</aside>
 </div>
