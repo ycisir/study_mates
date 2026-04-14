@@ -1,4 +1,5 @@
 <div class="mb-2">
+    <%= avatar_for(message.user, size: "20x20") %>
 	<%= link_to message.user.name, user_path(message.user), class: "text-decoration-none small" %>: <%= message.body %>
 
 	<% if message.files.attached? %>

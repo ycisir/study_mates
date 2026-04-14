@@ -1,6 +1,4 @@
 <section class="d-flex align-items-start">
-	<% if @user.avatar.attached? %>
-		<%= image_tag @user.avatar.variant(:profile), class: "me-2" %>
-	<% end %>
+	<%= avatar_for(@user, variant: :profile, size: "100x100") %>
 	<h5 class="mb-0"><%= @user.name %></h5>
 </section>

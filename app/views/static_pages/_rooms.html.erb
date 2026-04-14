@@ -3,6 +3,7 @@
     <li class="border-bottom mb-2 list-group-item border-0 rounded-0 d-flex align-items-start">
       <div>
         <span class="d-block">
+          <%= avatar_for(room.host, variant: :activity_thumb, size: "20x20") %>
           <%= link_to room.host.name, user_path(room.host), class: "text-decoration-none small" %>
         </span>
 

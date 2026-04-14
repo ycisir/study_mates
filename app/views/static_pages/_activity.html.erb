@@ -4,10 +4,7 @@
   <% @messages.each do |message| %>
     <li class="list-group-item mb-2 p-2">
       <div class="text-muted small">
-
-          <% if message.user.avatar.attached? %>
-          	<%= image_tag message.user.avatar.variant(:activity_thumb) %>
-          <% end %>
+        <%= avatar_for(message.user, variant: :activity_thumb, size: "20x20") %>
 
         <%= link_to message.user.name, user_path(message.user), class: "text-decoration-none" %>
 
