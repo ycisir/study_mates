@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
   <div class="container">
 
-    <%= link_to "StudyMates", root_path, class: "navbar-brand fw-bold" %>
+    <%= link_to root_path, class: "navbar-brand fw-bold d-flex align-items-center gap-2" do %>
+      <%= image_tag "StudyMates.png", alt: "StudyMates", height: 30 %>
+      <span>STUDYMATES</span>
+    <% end %>
     <a class="navbar-brand" href="#"></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
