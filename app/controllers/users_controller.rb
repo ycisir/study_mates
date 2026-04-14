@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: %i[ index edit update destroy following followers ]
+	before_action :set_user, only: %i[ show edit update destroy following followers ]
+	before_action :check_activation, only: %i[ show edit update destroy following followers ]
 	before_action :correct_user, only: %i[ edit update ]
 	before_action :admin_user, only: %i[ destroy ]
 
@@ -8,14 +10,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.friendly.find(params[:slug])
-		@rooms =
-		    if signed_in?
-		      current_user.feed.paginate(page: params[:page], per_page: 10)
-		    else
-		      Room.by_user(@user).paginate(page: params[:page], per_page: 10)
-		    end
-		redirect_to root_url and return unless @user.activated
+		@rooms = Room.by_user(@user).paginate(page: params[:page], per_page: 10)
 	end
 
 	def new
@@ -47,23 +42,21 @@ class UsersController < ApplicationController
 	end
 
 	def destroy
-		@user = User.friendly.find(params[:slug])
+		@user.destroy
 		flash[:success] = "User deleted"
 		redirect_to users_url, status: :see_other
 	end
 
 	def following
 	    @title = "Following"
-	    @user = User.friendly.find(params[:slug])
 	    @users = @user.following.paginate(page: params[:page])
-	    render 'show_follow', status: :unprocessable_entity
+	    render 'show_follow'
 	  end
 
 	  def followers
 	    @title = "Followers"
-	    @user = User.friendly.find(params[:slug])
 	    @users = @user.followers.paginate(page: params[:page])
-	    render 'show_follow', status: :unprocessable_entity
+	    render 'show_follow'
 	  end
 
 	private
@@ -73,11 +66,18 @@ class UsersController < ApplicationController
 	end
 
 	def correct_user
-		@user = User.friendly.find(params[:slug])
 		redirect_to(root_url, status: :see_other) unless current_user?(@user)
 	end
 
+	def set_user
+	  @user = User.friendly.find(params[:slug])
+	end
+
+	def check_activation
+		redirect_to root_url and return unless @user.activated
+	end
+
 	def admin_user
-		redirect_to(root_url, status: :see_other) unless current_user.admin?
+		redirect_to root_url unless current_user&.admin?
 	end
 end
