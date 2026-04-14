@@ -29,9 +29,8 @@ class User < ApplicationRecord
 	scope :activated, -> { where(activated: true) }
 
 	def feed
-		Room.where("user_id = ?", id)
-		following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-		Room.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id).includes(:user, :topic, messages: { files_attachments: :blob } ).distinct
+		part_of_feed = "relationships.follower_id = :id or rooms.user_id = :id or rooms_users.user_id = :id"
+		Room.left_outer_joins(user: :followers).left_joins(:participants).where(part_of_feed, { id: id }).distinct.includes(:user, :topic, messages: { files_attachments: :blob } )
 	end
 
 	# Follows a user.
