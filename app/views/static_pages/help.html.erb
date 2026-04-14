@@ -1,37 +1,81 @@
 <% provide(:title, "Help") %>
 
-<h1>Help</h1>
+<h1 class="fw-light">Help Center</h1>
 
-<p>Welcome to StudyMates! This platform is designed to help professionals connect, collaborate, and grow together.</p>
+<div class="text-muted">
 
-<strong>Getting Started</strong>
+  <p>
+    Welcome to <strong>StudyMates</strong> — a collaborative platform designed to help you connect with like-minded professionals,
+    join discussions, and grow through shared learning experiences.
+  </p>
 
-<ul>
-	<li>Create your profile and upload a photo</li>
-	<li>Explore other users and connect with study partners</li>
-	<li>Join discussions and share resources</li>
-</ul>
+  <hr>
 
+  <h5>Getting Started</h5>
+  <ul>
+    <li>Create your account and complete your profile with a profile picture and bio</li>
+    <li>Explore users and connect with study partners based on your interests</li>
+    <li>Join or create rooms to participate in focused discussions</li>
+    <li>Use the search feature to find rooms by topic or name if your feed is empty</li>
+    <li>Start conversations by sending messages inside rooms</li>
+  </ul>
 
+  <hr>
 
+  <h5>Features Overview</h5>
+  <ul>
+    <li><strong>Rooms:</strong> Join topic-based spaces for discussions and collaboration</li>
+    <li><strong>Feed:</strong> Personalized stream of rooms from people you follow and participate in</li>
+    <li><strong>Following System:</strong> Follow other users to stay updated with their activity</li>
+    <li><strong>Messaging:</strong> Share ideas, resources, and files within rooms</li>
+    <li><strong>Search:</strong> Quickly find rooms or topics using keywords</li>
+  </ul>
 
-<strong>Common Questions</strong>
+  <hr>
 
-<ul>
-	<li>
-		<p class="m-0">How do I connect with others?</p>
-		<small>Browse users and send requests or start conversations in the rooms.</small>
-	</li>
-	<li>
-		<p class="m-0">How do I update my profile?</p>
-		<small>Go to your profile settings and edit your details anytime.</small>
-	</li>
-	<li>
-		<p class="m-0">Having issues?</p>
-		<small>Try refreshing the page or logging out and back in.</small>
-	</li>
-</ul>
+  <h5>Common Questions</h5>
+  <ul>
+    <li>
+      <p class="m-0"><strong>How do I connect with others?</strong></p>
+      <small>Visit user profiles and follow them to stay updated with their activity and rooms.</small>
+    </li>
 
-<p>
-	If you need further assistance, please reach out through the <%= link_to "Contact page", contact_path, class: "text-dark" %>.
-</p>
+    <li>
+      <p class="m-0"><strong>How do I join a room?</strong></p>
+      <small>Click on any room and start participating — you will automatically be added as a participant when you interact.</small>
+    </li>
+
+    <li>
+      <p class="m-0"><strong>How do I update my profile?</strong></p>
+      <small>Go to your profile page and click edit to update your details, including your avatar.</small>
+    </li>
+
+    <li>
+      <p class="m-0"><strong>What if I don't see any content in my feed?</strong></p>
+      <small>Your feed depends on your activity. Try following users or joining rooms, or use search to explore topics.</small>
+    </li>
+
+    <li>
+      <p class="m-0"><strong>Having technical issues?</strong></p>
+      <small>Try refreshing the page, clearing your browser cache, or logging out and back in. If the issue persists, contact support.</small>
+    </li>
+  </ul>
+
+  <hr>
+
+  <h5>Best Practices</h5>
+  <ul>
+    <li>Be respectful and constructive in discussions</li>
+    <li>Join rooms relevant to your interests for better recommendations</li>
+    <li>Follow active users to improve your feed quality</li>
+    <li>Use clear room names and descriptions when creating content</li>
+  </ul>
+
+  <hr>
+
+  <p>
+    Need more help? Reach out anytime via the
+    <%= link_to "Contact page", contact_path, class: "text-dark" %>.
+  </p>
+
+</div>
