@@ -38,3 +38,5 @@ gem "image_processing", "1.12.2"
 gem "redis", "~> 5.4"
 
 gem "dotenv-rails", "~> 3.2"
+
+gem "sidekiq", "~> 8.1"
