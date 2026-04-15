@@ -41,9 +41,11 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
-  host = 'localhost:3000'
+  host = '127.0.0.1:3000'
   config.force_ssl = false
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.active_job.queue_adapter = :inline
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

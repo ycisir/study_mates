@@ -3,6 +3,7 @@ module Authenticatable
 
 	included do
 		has_secure_password
+		attr_accessor :remember_token
 	end
 
 	class_methods do
@@ -21,19 +22,19 @@ module Authenticatable
 	# Remembers a user in the database for use in persistent sessions.
 	def remember
 		self.remember_token = self.class.new_token
-		update_attribute(:remember_digest, self.class.digest(remember_token))
+		update!(remember_digest: self.class.digest(remember_token))
 		remember_digest
 	end
 
 	# Returns true if the given token matches the digest.
 	def authenticated?(attribute, token)
 		digest = self.send("#{attribute}_digest")
-		return false if digest.nil?
+		return false if digest.blank? || token.blank?
 		BCrypt::Password.new(digest).is_password?(token)
 	end
 
 	# Forgets a user.
 	def forget
-		update_attribute(:remember_digest, nil)
+		update!(remember_digest: nil)
 	end
 end

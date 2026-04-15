@@ -3,12 +3,13 @@ module Activatable
 
 	# Activates an account.
 	def activate
-		update_columns(activated: true, activated_at: Time.current)
+		update!(activated: true, activated_at: Time.current)
 	end
 
 	# Sends activation email.
 	def send_activation_email
 		create_activation_digest
+		save!
 		UserMailer.account_activation(self, activation_token).deliver_later
 	end
 
