@@ -10,7 +10,7 @@ module Activatable
 	def send_activation_email
 		create_activation_digest
 		save!
-		UserMailer.account_activation(self, activation_token).deliver_later
+		UserMailer.account_activation(self, activation_token).deliver_now
 	end
 
 	private

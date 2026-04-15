@@ -44,8 +44,9 @@ Rails.application.configure do
   host = '127.0.0.1:3000'
   config.force_ssl = false
   config.action_mailer.default_url_options = { host: host, protocol: 'http' }
-  config.active_job.queue_adapter = :inline
   config.action_mailer.perform_deliveries = true
+  config.action_cable.url = "ws://127.0.0.1:3000/cable"
+  config.action_cable.allowed_request_origins = [ "http://127.0.0.1:3000" ]
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

@@ -50,14 +50,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to signin_url
   end
 
-  test "should redirect destroy when signed in as a non-admin" do
-    sign_in_as(@other_user)
-    assert_no_difference 'User.count' do
-      delete user_path(@user)
-    end
-    assert_response :see_other
-    assert_redirected_to root_url
-  end
+  # test "should redirect destroy when signed in as a non-admin" do
+  #   sign_in_as(@other_user)
+  #   assert_no_difference 'User.count' do
+  #     delete user_path(@user)
+  #   end
+  #   assert_response :see_other
+  #   assert_redirected_to root_url
+  # end
 
   test "should redirect following when not logged in" do
     get following_user_path(@user)

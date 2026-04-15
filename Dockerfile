@@ -9,6 +9,7 @@ RUN bundle install
 
 COPY . .
 
-RUN bundle exec rails assets:precompile
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
-CMD ["bash", "-c", "set -e && bundle exec rails db:migrate && bundle exec rails db:seed && bundle exec rails server -b 0.0.0.0 -p 3000"]
+ENTRYPOINT ["entrypoint.sh"]
