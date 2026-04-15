@@ -63,24 +63,61 @@
 
   <hr>
 
-  <h5>Email Not Received?</h5>
+  <h5>Email Not Received or Account Not Activated?</h5>
 
   <p>
-    If you requested an account activation or password reset email but did not receive it,
-    follow these steps:
+    If you signed up or requested a password reset but did not receive an email,
+    please read the information below carefully.
   </p>
 
   <ul>
-    <li>Check your <strong>Spam</strong> or <strong>Promotions</strong> folder in your email inbox</li>
-    <li>Wait 2–5 minutes, as emails may be slightly delayed</li>
-    <li>Make sure you entered the correct email address</li>
-    <li>Try requesting the email again from the login or password reset page</li>
-    <li>Ensure your email service is not blocking messages from <strong>StudyMates</strong></li>
+    <li>Check your <strong>Spam</strong>, <strong>Promotions</strong>, or <strong>Updates</strong> folder</li>
+    <li>Wait a few minutes, as email delivery may be delayed</li>
+    <li>Make sure the email address entered is correct</li>
+    <li>Try requesting the email again from the relevant page</li>
   </ul>
 
-  <p class="mt-3">
-    If you are still not receiving emails, it may be due to email delivery filters or provider restrictions. In that case, 
-    please contact support via the <%= link_to "Contact page", contact_path, class: "text-dark" %> and include your registered email address.
+  <hr>
+
+  <h6>Important Notice</h6>
+
+  <p>
+    <strong>StudyMates is currently running on a free-tier deployment (Render + external email service).</strong>
+  </p>
+
+  <p>
+    Because of this, email delivery (account activation and password reset) may occasionally be delayed or fail due to
+    external service limitations or rate restrictions.
+  </p>
+
+  <p>
+    If you are unable to verify your account or reset your password, you can still explore the application using the
+    <strong>mock/demo users</strong> provided below.
+  </p>
+
+  <ul>
+    <li><strong>Email:</strong> jack@example.com</li>
+    <li><strong>Password:</strong> jack123</li>
+  </ul>
+
+  <p>
+    These demo accounts allow you to test all core features including rooms, messaging, and user interactions.
+  </p>
+
+  <hr>
+
+  <h6>Why this happens</h6>
+
+  <ul>
+    <li>Email services (SMTP providers) may throttle free-tier traffic</li>
+    <li>Background jobs (Sidekiq) may be limited on free hosting plans</li>
+    <li>External services can temporarily block automated emails</li>
+  </ul>
+
+  <hr>
+
+  <p>
+    We are actively working on improving email reliability. Thank you for your understanding.
   </p>
 
   <hr>
