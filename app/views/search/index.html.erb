@@ -5,7 +5,7 @@
 <div class="p-3">
 	<ul class="list-group">
 		<div class="mb-3">
-			<% if @rooms.any? %>
+			<% if @rooms.any? || @users.any? %>
 				<h5 class="fw-light">Rooms <small class="text-muted">(<%= @rooms.count %>)</small></h5>
 				<% @rooms.each do |room| %>
 					<li class="border-0 list-group-item rounded-0">
@@ -14,12 +14,8 @@
 						</h6>
 					</li>
 				<% end %>
-			<% end %>
-		</div>
 
-		<div>
-			<% if @users.any? %>
-				<h5 class="fw-light">Users <small class="text-muted">(<%= @users.count %>)</small></h5>
+				<h5 class="fw-light mt-3">Users <small class="text-muted">(<%= @users.count %>)</small></h5>
 				<% @users.each do |user| %>
 					<li class="border-0 list-group-item rounded-0">
 						<div class="d-flex align-items-center">
@@ -30,6 +26,8 @@
 						</div>
 					</li>
 				<% end %>
+			<% else %>
+				<p class="text-muted">No results found!</p>
 			<% end %>
 		</div>
 	</ul>
