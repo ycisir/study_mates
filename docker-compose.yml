@@ -7,7 +7,7 @@ services:
       - db
       - redis
     env_file:
-      - .env
+      - .env_dev
     volumes:
       - .:/app
       - bundle_cache:/usr/local/bundle
