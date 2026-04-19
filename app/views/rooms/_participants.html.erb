@@ -1,12 +1,12 @@
 <h5 class="fw-light">Participants <small class="text-muted">(<%= @room.participants.count + 1 %>)</small></h5>
 <ul class="list-group">
 	<li class="list-group-item border-0 rounded-0 pb-0">
-	    <%= avatar_for(@room.user, size: "20x20") %>
+	    <%= avatar_for(@room.host, size: "20x20") %>
 		<%= link_to "#{@room.host.name} (Host)", user_path(@room.host), class: "text-decoration-none small" %>
 	</li>
 	<% @room.participants.each do |user| %>
 		<li class="list-group-item border-0 rounded-0 pb-0">
-			<%= avatar_for(@room.user, size: "20x20") %>
+			<%= avatar_for(user, size: "20x20") %>
 		    <%= link_to user.name, user_path(user), class: "text-decoration-none small" %>
 		</li>
 	<% end %>
