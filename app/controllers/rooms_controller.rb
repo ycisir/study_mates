@@ -44,6 +44,8 @@ class RoomsController < ApplicationController
 	end
 
 	def correct_user
-	  redirect_to root_url, status: :see_other unless @room.user == current_user
+		unless (@room.user == current_user || current_user.admin?)
+			redirect_to root_url, status: :see_other
+		end
 	end
 end
