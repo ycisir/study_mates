@@ -7,10 +7,10 @@ Built a SaaS-based collaborative e-learning platform to enable real-time interac
 - Role-based authentication system
 - Account activation & password recovery (email via SendGrid API)
 - User follow/unfollow relationships
-- Real-time messaging (Action Cable)
+- Real-time messaging and Recent activity via Action Cable
 - Room-based collaboration system
 - Topic-based filtering
-- Personalized activity feed
+- Personalized user feed
 - Search, pagination & SEO-friendly URLs
 
 ### Tech Stack
@@ -37,7 +37,7 @@ Built a SaaS-based collaborative e-learning platform to enable real-time interac
 - Render
 
 ### Architecture
-- Real-time messaging via Action Cable + Redis pub/sub
+- Real-time messaging and Recent activity via Action Cable + Redis pub/sub
 - Scalable media delivery via Cloudinary CDN
 - Secure authentication (activation + password reset tokens)
 - Transactional email system using SendGrid API
