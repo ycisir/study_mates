@@ -81,25 +81,29 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
 
-  config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
-    port: 587,
-    user_name: "apikey",
-    password: ENV["SENDGRID_API_KEY"],
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.sendgrid.net",
+  #   port: 587,
+  #   user_name: "apikey",
+  #   password: ENV["SENDGRID_API_KEY"],
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 
-  config.action_mailer.default_options = {
-    from: ENV["EMAIL"]
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ENV["SENDGRID_API_KEY"]
   }
 
   config.action_mailer.default_url_options = {
     host: "study-mates.onrender.com",
     protocol: "https"
   }
+
+  config.active_job.queue_adapter = :async
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
