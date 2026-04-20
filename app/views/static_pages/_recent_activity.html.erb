@@ -1,0 +1,21 @@
+<li id="<%= dom_id(message, :recent_activity) %>" class="list-group-item mb-2 p-2">
+  <div class="text-muted small">
+    <%= avatar_for(message.user, variant: :activity_thumb, size: "20x20") %>
+
+    <%= link_to message.user.name, user_path(message.user), class: "text-decoration-none" %>
+
+    <div>
+      <% if message.body.present? %>
+      	replied 
+      	<span class="text-dark"><%= message.body %></span>
+      <% else %>
+      	sent attachments
+      <% end %>
+
+      <div>
+        <%= time_ago_in_words(message.created_at) %> ago in
+        <%= link_to message.room.name, room_path(message.room), class: "text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+</li>
