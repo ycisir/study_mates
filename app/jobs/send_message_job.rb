@@ -9,6 +9,11 @@ class SendMessageJob < ApplicationJob
       locals: { message: message }
     )
 
-    ActionCable.server.broadcast "room_chat_channel_#{message.room_id}", { html: html }
+    participants = ApplicationController.render(
+      partial: "rooms/participants",
+      locals: { room: room }
+    )
+
+    ActionCable.server.broadcast "room_chat_channel_#{message.room_id}", { html: html, participants: participants }
   end
 end

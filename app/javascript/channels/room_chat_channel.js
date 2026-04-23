@@ -75,6 +75,15 @@ document.addEventListener("turbo:load", () => {
         if (fileCount) fileCount.textContent = "";
 
         sendButton.disabled = true;
+
+
+        // participants list
+        // console.log(data.participants);
+
+        if (data.participants) {
+          const participantsList = document.getElementById("participants-list");
+          participantsList.innerHTML = data.participants;
+        }
       }
     }
   );
