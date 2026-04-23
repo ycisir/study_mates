@@ -26,6 +26,6 @@ class SessionsController < ApplicationController
 
 	def destroy
 		sign_out if signed_in?
-		redirect_to root_url, status: :see_other
+		redirect_to signin_url, status: :see_other
 	end
 end

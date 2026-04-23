@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: %i[ show edit update destroy following followers ]
 	before_action :check_activation, only: %i[ show edit update destroy following followers ]
 	before_action :correct_user, only: %i[ edit update ]
-	before_action :admin_user, only: %i[ destroy ]
+	before_action :admin_user, only: %i[ index destroy ]
 
 	def index
 		@users = User.activated.paginate(page: params[:page])

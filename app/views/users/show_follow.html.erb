@@ -4,7 +4,6 @@
 
 		<%= render "profile" %>
 
-
 		<section class="mt-3">
 			<%= render 'shared/stats' %>
 		</section>
@@ -20,7 +19,6 @@
 		<% if @users.any? %>
 			<ul class="users follow">
 				<%= render @users %>
-
 			</ul>
 			<%= will_paginate %>
 		<% end %>

@@ -5,10 +5,7 @@
     <%= link_to user.name, user, class: "text-decoration-none small" %>
   </div>
 
-  <% if signed_in? && current_user.admin? && !current_user?(user) %>
-    <%= link_to "Delete", user,
-        class: "text-decoration-none small",
-        data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+  <% if current_user.admin? && current_page?(users_path) %>
+    <%= link_to "Delete", user, class: "text-decoration-none small", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
   <% end %>
-
 </li>
