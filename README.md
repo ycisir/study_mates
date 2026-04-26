@@ -9,11 +9,11 @@ A SaaS-based collaborative e-learning platform for real-time discussion, messagi
 * 🔍 Search, pagination, and clean URLs
 
 ### 🛠 Tech Stack
-* Ruby 3.2, Rails 7.2, Hotwire (Turbo), Postgres, Redis, Action Cable, Cloudinary(Serve media), SendGrid(Email), Render(Deploy)
+* Ruby on Rails, Hotwire, Postgres, Redis, Action Cable, Cloudinary, SendGrid, Render
 
 ### ⚙️ Setup
-***Prerequisites***
-- rbenv (Ruby 3.2+)
+**Prerequisites**
+- rbenv (ruby 3.2)
 - postgres
 - redis
 - libvips
