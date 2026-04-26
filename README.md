@@ -1,121 +1,29 @@
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-
 # StudyMates
-Built a SaaS-based collaborative e-learning platform to enable real-time interaction and content sharing.
+A SaaS-based collaborative e-learning platform for real-time discussion, messaging, and knowledge sharing.
 
-### Features
-- Role-based authentication system
-- Account activation & password recovery (email via SendGrid API)
-- User follow/unfollow relationships
-- Real-time messaging and Recent activity via Action Cable
-- Room-based collaboration system
-- Topic-based filtering
-- Personalized user feed
-- Search, pagination & SEO-friendly URLs
+### ✨ Features
+* 🔐 Authentication with account activation & password recovery
+* 👥 Follow / unfollow users + personalized feed
+* 💬 Real-time messaging using Action Cable (WebSockets)
+* 🧠 Topic-based rooms for structured discussions
+* 🔍 Search, pagination, and clean URLs
 
-### Tech Stack
-**Backend**
-- Ruby on Rails 7.2
-- Ruby 3.2+
-- MVC Architecture
-- Hotwire (Turbo, Stimulus)
+### 🛠 Tech Stack
+* Ruby 3.2, Rails 7.2, Hotwire (Turbo), Postgres, Redis, Action Cable, Cloudinary(Serve media), SendGrid(Email), Render(Deploy)
 
-**Database**
-- PostgreSQL (Neon in production, Docker in development)
+### ⚙️ Setup
+***Prerequisites***
+- rbenv (Ruby 3.2+)
+- postgres
+- redis
+- libvips
 
-**Real-time**
-- Action Cable (WebSockets)
-- Redis (Upstash in production, Docker in development)
-
-**Media Storage**
-- Cloudinary (image/file uploads, CDN delivery)
-
-**Email**
-- SendGrid API
-
-**Deployment**
-- Render
-
-### Architecture
-- Real-time messaging and Recent activity via Action Cable + Redis pub/sub
-- Scalable media delivery via Cloudinary CDN
-- Secure authentication (activation + password reset tokens)
-- Transactional email system using SendGrid API
-- Docker-based local development environment
-
-### Database schema
-```mermaid
-erDiagram
-
-  USERS ||--o{ ROOMS : creates
-  USERS ||--o{ MESSAGES : writes
-  USERS ||--o{ RELATIONSHIPS : follows
-  USERS ||--o{ ROOMS_USERS : joins
-
-  ROOMS ||--o{ MESSAGES : has
-  ROOMS }o--|| TOPICS : belongs_to
-
-  USERS {
-    bigint id
-    string name
-    string email
-    boolean activated
-  }
-
-  ROOMS {
-    bigint id
-    string name
-    bigint user_id
-    bigint topic_id
-  }
-
-  TOPICS {
-    bigint id
-    string name
-  }
-
-  MESSAGES {
-    bigint id
-    text body
-    bigint user_id
-    bigint room_id
-  }
-
-  RELATIONSHIPS {
-    bigint follower_id
-    bigint followed_id
-  }
-
-  ROOMS_USERS {
-    bigint room_id
-    bigint user_id
-  }
-  ```
-
-### Local Development
-Docker handles PostgreSQL and Redis — no local installation required
-
-**Prerequisites**
-- Docker Compose
-
-**Setup**
 ```bash
-# clone the repository
 git clone https://github.com/ycisir/study_mates.git
-
-# move to project directory
 cd study_mates
-
-# rename .env.example to .env and change EMAIL_FROM in .env
-mv .env.example .env
-
-# build docker image
-docker compose up --build
-
-# run tests
-docker compose exec web rails test
+bundle install
+rails db:setup
+rails t && rails s
 ```
-server runs at `http://127.0.0.1:3000/`
 
-### License
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for full details.
+### 📄 MIT License
