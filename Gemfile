@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 7.2.3", ">= 7.2.3.1"
+gem "rails", "8.0.5"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
@@ -24,7 +24,7 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'rails-controller-testing'
+  gem "rails-controller-testing"
 end
 
 gem "bootstrap", "~> 5.3"

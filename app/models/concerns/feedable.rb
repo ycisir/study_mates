@@ -19,7 +19,7 @@ module Feedable
             .left_joins(:messages)
             .where(part_of_feed, { id: id })
             .distinct
-            .includes(:user, :topic, messages: { files_attachments: :blob } )
+            .includes(:user, :topic, messages: { files_attachments: :blob })
             .order(updated_at: :desc)
     end
 end
