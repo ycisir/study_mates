@@ -41,9 +41,9 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
-  host = '127.0.0.1:3000'
+  host = "127.0.0.1:3000"
   config.force_ssl = false
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.default_url_options = { host: host, protocol: "http" }
   config.action_mailer.perform_deliveries = true
   config.action_cable.url = "ws://127.0.0.1:3000/cable"
   config.action_cable.allowed_request_origins = [ "http://127.0.0.1:3000" ]

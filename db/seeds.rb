@@ -26,7 +26,7 @@ admin = User.create!(
 puts "Admin created"
 
 # Generate Users
-users = [admin]
+users = [ admin ]
 
 50.times do |n|
   users << User.create!(

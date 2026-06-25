@@ -9,13 +9,13 @@ end
 class InvalidPasswordTest < UsersSignIn
   test "signin path" do
     get signin_path
-    assert_template 'sessions/new'
+    assert_template "sessions/new"
   end
 
   test "signin with valid email/invalid password" do
     post signin_path, params: { session: { email: @user.email, password: "invalid" } }
     assert_not is_signed_in?
-    assert_template 'sessions/new'
+    assert_template "sessions/new"
     assert_not flash.empty?
     get root_path
     assert flash.empty?
@@ -38,7 +38,7 @@ class ValidSignInTest < ValidSignIn
 
   test "redirect after signin" do
     follow_redirect!
-    assert_template 'users/show'
+    assert_template "users/show"
     assert_select "a[href=?]", signin_path, count: 0
     assert_select "a[href=?]", signout_path
     assert_select "a[href=?]", user_path(@user)
@@ -69,11 +69,11 @@ end
 
 class UsersSignInTest < UsersSignIn
   test "sign in with valid information followed by sign out" do
-    post signin_path, params: { session: { email: @user.email, password: "password"} }
+    post signin_path, params: { session: { email: @user.email, password: "password" } }
     assert is_signed_in?
     assert_redirected_to @user
     follow_redirect!
-    assert_template 'users/show'
+    assert_template "users/show"
     assert_select "a[href=?]", signin_path, count: 0
     assert_select "a[href=?]", signout_path
     assert_select "a[href=?]", user_path(@user)
@@ -98,13 +98,13 @@ end
 
 class RememberingTest < UsersSignIn
   test "sign in with remembering" do
-    sign_in_as(@user, remember_me: '1')
+    sign_in_as(@user, remember_me: "1")
     assert_not cookies[:remember_token].blank?
   end
 
   test "sign in without remembering" do
-    sign_in_as(@user, remember_me: '1')
-    sign_in_as(@user, remember_me: '0')
+    sign_in_as(@user, remember_me: "1")
+    sign_in_as(@user, remember_me: "0")
     assert cookies[:remember_token].blank?
   end
 end

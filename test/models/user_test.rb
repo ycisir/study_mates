@@ -74,8 +74,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "associated rooms should be destroyed" do
     @user.save
-    @user.rooms = [rooms(:rails)]
-    assert_difference 'Room.count', -1 do
+    @user.rooms = [ rooms(:rails) ]
+    assert_difference "Room.count", -1 do
       @user.destroy
     end
   end
