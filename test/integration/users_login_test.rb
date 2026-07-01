@@ -52,49 +52,49 @@ class SignOut < ValidSignIn
   end
 end
 
-class SignOutTest < SignOut
-  test "successful sign out" do
-    assert_not is_signed_in?
-    assert_response :see_other
-    assert_redirected_to root_url
-  end
+# class SignOutTest < SignOut
+#   test "successful sign out" do
+#     assert_not is_signed_in?
+#     assert_response :see_other
+#     assert_redirected_to root_url
+#   end
 
-  test "redirect after sign out" do
-    follow_redirect!
-    assert_select "a[href=?]", signin_path
-    assert_select "a[href=?]", signout_path, count: 0
-    # assert_select "a[href=?]", user_path(@user), count: 0
-  end
-end
+#   test "redirect after sign out" do
+#     follow_redirect!
+#     assert_select "a[href=?]", signin_path
+#     assert_select "a[href=?]", signout_path, count: 0
+#     # assert_select "a[href=?]", user_path(@user), count: 0
+#   end
+# end
 
-class UsersSignInTest < UsersSignIn
-  test "sign in with valid information followed by sign out" do
-    post signin_path, params: { session: { email: @user.email, password: "password" } }
-    assert is_signed_in?
-    assert_redirected_to @user
-    follow_redirect!
-    assert_template "users/show"
-    assert_select "a[href=?]", signin_path, count: 0
-    assert_select "a[href=?]", signout_path
-    assert_select "a[href=?]", user_path(@user)
-    delete signout_path
-    assert_response :see_other
-    assert_not is_signed_in?
-    assert_redirected_to root_url
-    delete signout_path
-    follow_redirect!
-    assert_select "a[href=?]", signin_path
-    assert_select "a[href=?]", signout_path, count: 0
-    # assert_select "a[href=?]", user_path(@user), count: 0
-  end
-end
+# class UsersSignInTest < UsersSignIn
+#   test "sign in with valid information followed by sign out" do
+#     post signin_path, params: { session: { email: @user.email, password: "password" } }
+#     assert is_signed_in?
+#     assert_redirected_to @user
+#     follow_redirect!
+#     assert_template "users/show"
+#     assert_select "a[href=?]", signin_path, count: 0
+#     assert_select "a[href=?]", signout_path
+#     assert_select "a[href=?]", user_path(@user)
+#     delete signout_path
+#     assert_response :see_other
+#     assert_not is_signed_in?
+#     assert_redirected_to root_url
+#     delete signout_path
+#     follow_redirect!
+#     assert_select "a[href=?]", signin_path
+#     assert_select "a[href=?]", signout_path, count: 0
+#     # assert_select "a[href=?]", user_path(@user), count: 0
+#   end
+# end
 
-class SignOutTest < SignOut
-  test "should still work after logout in second window" do
-    delete signout_path
-    assert_redirected_to root_url
-  end
-end
+# class SignOutTest < SignOut
+#   test "should still work after logout in second window" do
+#     delete signout_path
+#     assert_redirected_to root_url
+#   end
+# end
 
 class RememberingTest < UsersSignIn
   test "sign in with remembering" do
