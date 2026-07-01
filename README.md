@@ -13,7 +13,7 @@ A SaaS-based collaborative e-learning platform for real-time discussion, messagi
 
 ### ⚙️ Setup
 **Prerequisites**
-- rbenv (ruby 3.2)
+- rbenv (ruby 3.4.8)
 - postgres
 - redis
 - libvips
