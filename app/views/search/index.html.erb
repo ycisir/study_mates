@@ -1,34 +1,52 @@
 <% provide(:title, 'Search') %>
 
-<h4 class="text-left pb-2 border-bottom">Searched for <%= highlight(params[:q], params[:q]) %></h1>
+<div class="row">
+	<div class="col-md-3">
+		<%= render "static_pages/topics" %>
+	</div>
 
-<div class="p-3">
-	<ul class="list-group">
-		<div class="mb-3">
-			<% if @rooms.any? || @users.any? %>
-				<h5 class="fw-light">Rooms <small class="text-muted">(<%= @rooms.count %>)</small></h5>
-				<% @rooms.each do |room| %>
-					<li class="border-0 list-group-item rounded-0">
-						<h6 class="mb-0">
-							<%= link_to room.name, room_path(room), class: "text-decoration-none fw-light" %>
-						</h6>
-					</li>
-				<% end %>
+	<div class="col-md-6">
+		<h4 class="text-left pb-2 border-bottom">Searched for <%= highlight(params[:q], params[:q]) %></h1>
 
-				<h5 class="fw-light mt-3">Users <small class="text-muted">(<%= @users.count %>)</small></h5>
-				<% @users.each do |user| %>
-					<li class="border-0 list-group-item rounded-0">
-						<div class="d-flex align-items-center">
-							<%= avatar_for(user, size: "20x20") %>
-							<h6 class="mb-0">
-								<%= link_to user.name, user, class: "text-decoration-none fw-light" %>
-							</h6>
-						</div>
-					</li>
-				<% end %>
-			<% else %>
-				<p class="text-muted">No results found!</p>
-			<% end %>
+		<div class="p-3">
+			<ul class="list-group">
+				<div class="mb-3">
+					<% if @rooms.any? || @users.any? %>
+						<h5 class="fw-light">Rooms <small class="text-muted">(<%= @rooms.count %>)</small></h5>
+						<% @rooms.each do |room| %>
+							<li class="border-0 list-group-item rounded-0">
+								<h6 class="mb-0">
+									<%= link_to room.name, room_path(room), class: "text-decoration-none fw-light" %>
+								</h6>
+							</li>
+						<% end %>
+
+						<h5 class="fw-light mt-3">Users <small class="text-muted">(<%= @users.count %>)</small></h5>
+						<% @users.each do |user| %>
+							<li class="border-0 list-group-item rounded-0">
+								<div class="d-flex align-items-center">
+									<%= avatar_for(user, size: "20x20") %>
+									<h6 class="mb-0">
+										<%= link_to user.name, user, class: "text-decoration-none fw-light" %>
+									</h6>
+								</div>
+							</li>
+						<% end %>
+					<% else %>
+						<p class="text-muted">No results found!</p>
+					<% end %>
+				</div>
+			</ul>
 		</div>
-	</ul>
+	</div>
+
+	<div class="col-md-3">
+		<h5 class="fw-light mb-3">Recent activity</h5>
+		<ul id="recent-activity">
+		  <% @messages.each do |message| %>
+		    <%= render "static_pages/recent_activity", { message: message } %>
+		  <% end %>
+		</ul>
+	</div>
+
 </div>
