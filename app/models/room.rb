@@ -15,7 +15,7 @@ class Room < ApplicationRecord
   end
 
   scope :recent, -> { order(created_at: :desc) }
-  scope :feed, -> { includes(:user, :topic).recent }
+  scope :feed, -> { includes(:topic, user: { avatar_attachment: :blob }).recent }
   scope :by_topic, ->(topic_id) { where(topic_id: topic_id) }
   scope :search, ->(q) {
     return all if q.blank?

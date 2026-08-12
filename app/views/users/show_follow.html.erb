@@ -18,7 +18,7 @@
 		<h5 class="fw-light"><%= @title %></h5>
 		<% if @users.any? %>
 			<ul class="users follow">
-				<%= render @users %>
+				<%= render @users, current_user: current_user %>
 			</ul>
 			<%= will_paginate %>
 		<% end %>

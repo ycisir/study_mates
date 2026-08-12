@@ -49,13 +49,13 @@ class UsersController < ApplicationController
 
   def following
       @title = "Following"
-      @users = @user.following.paginate(page: params[:page])
+      @users = @user.following.with_attached_avatar.paginate(page: params[:page])
       render "show_follow"
     end
 
     def followers
       @title = "Followers"
-      @users = @user.followers.paginate(page: params[:page])
+      @users = @user.followers.with_attached_avatar.paginate(page: params[:page])
       render "show_follow"
     end
 

@@ -4,5 +4,5 @@ class Topic < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  scope :with_rooms, -> { joins(:rooms).distinct.last(20) }
+  scope :with_rooms, -> { joins(:rooms).select("topics.*, COUNT(rooms.id) AS rooms_count").group("topics.id").order(id: :desc).limit(20) }
 end

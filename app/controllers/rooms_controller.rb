@@ -25,6 +25,8 @@ class RoomsController < ApplicationController
   end
 
   def show
+    @participants = @room.participants.with_attached_avatar
+    @messages = @room.messages.includes(user: { avatar_attachment: :blob }, files_attachments: :blob).order(created_at: :asc)
   end
 
   def destroy
@@ -40,7 +42,7 @@ class RoomsController < ApplicationController
   end
 
   def set_room
-    @room = Room.friendly.find(params[:slug])
+    @room = Room.friendly.includes(user: { avatar_attachment: :blob }).find(params[:slug])
   end
 
   def correct_user

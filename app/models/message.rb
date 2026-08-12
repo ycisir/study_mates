@@ -8,7 +8,7 @@ class Message < ApplicationRecord
   after_create_commit :broadcast_recent_activity
 
   scope :recent, -> { order(created_at: :desc).first(9) }
-  scope :activity_feed, -> { includes(:user, :room).recent  }
+  scope :activity_feed, -> { includes(:room, user: { avatar_attachment: :blob }).recent  }
 
   private
 
