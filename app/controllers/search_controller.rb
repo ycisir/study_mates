@@ -3,11 +3,11 @@ class SearchController < ApplicationController
     @topics = Topic.with_rooms
     @messages = Message.activity_feed
     if params[:q].present?
-      @rooms = Room.search(params[:q])
-      @users = User.search(params[:q]).activated
+      @rooms = Room.search(params[:q]).paginate(page: params[:page], per_page: 30)
+      @rooms_count = @rooms.count
     else
-      @users = []
       @rooms = []
+      @rooms_count = 0
     end
   end
 end
