@@ -25,7 +25,6 @@ class TopicDashboard < Administrate::BaseDashboard
     id
     name
     rooms
-    slug
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -63,7 +62,7 @@ class TopicDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how topics are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(topic)
-  #   "Topic ##{topic.id}"
-  # end
+  def display_resource(topic)
+    topic.name
+  end
 end

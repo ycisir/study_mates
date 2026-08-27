@@ -27,9 +27,9 @@ class RoomDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    info
-    messages
     name
+    user
+    messages
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -75,7 +75,7 @@ class RoomDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how rooms are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(room)
-  #   "Room ##{room.id}"
-  # end
+  def display_resource(room)
+    room.name
+  end
 end
