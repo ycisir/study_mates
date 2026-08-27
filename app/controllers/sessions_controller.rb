@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
         reset_session
         params[:session][:remember_me] == "1" ? remember(user) : forget(user)
         sign_in user
-        redirect_to forwarding_url || user
+        redirect_to user.admin? ? admin_root_url : forwarding_url || user
       else
         message = "Account not activated. "
-            message += "Check your email for the activation link."
-            flash[:warning] = message
-            redirect_to root_url
+        message += "Check your email for the activation link."
+        flash[:warning] = message
+        redirect_to root_url
       end
     else
       flash.now[:danger] = "Invalid email/password combination"

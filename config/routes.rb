@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :messages
+      resources :relationships
+      resources :rooms
+      resources :topics
+      resources :users
+
+      root to: "users#index"
+    end
   get "/home", to: "static_pages#home"
   get "/help", to: "static_pages#help", as: :help
   get "/about", to: "static_pages#about", as: :about
