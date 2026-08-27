@@ -11,7 +11,8 @@
 			<ul class="list-group">
 				<div class="mb-3">
 					<% if @rooms.any? %>
-						<h5 class="fw-light">Found <small class="text-muted">(<%= @rooms_count %>)</small> rooms.</h5>
+
+						<h5 class="fw-light">Found <%= pluralize(@rooms_count, "Room") %>.</h5>
 						<% @rooms.each do |room| %>
 							<li class="border-0 list-group-item rounded-0">
 								<h6 class="mb-0">
