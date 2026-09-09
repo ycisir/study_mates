@@ -9,6 +9,6 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :room_id, files: [])
+    params.expect(message: [ :body, :room_id, { files: [] } ])
   end
 end
