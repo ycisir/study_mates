@@ -38,7 +38,7 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name, :topic_name, :info)
+    params.expect(room: %i[ name topic_name info ])
   end
 
   def set_room
