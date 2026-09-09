@@ -48,21 +48,21 @@ class UsersController < ApplicationController
   end
 
   def following
-      @title = "Following"
-      @users = @user.following.with_attached_avatar.paginate(page: params[:page])
-      render "show_follow"
-    end
+    @title = "Following"
+    @users = @user.following.with_attached_avatar.paginate(page: params[:page])
+    render "show_follow"
+  end
 
-    def followers
-      @title = "Followers"
-      @users = @user.followers.with_attached_avatar.paginate(page: params[:page])
-      render "show_follow"
-    end
+  def followers
+    @title = "Followers"
+    @users = @user.followers.with_attached_avatar.paginate(page: params[:page])
+    render "show_follow"
+  end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
+    params.expect(user: %i[ name email password password_confirmation avatar ])
   end
 
   def correct_user
