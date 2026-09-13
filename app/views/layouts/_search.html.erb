@@ -1,0 +1,13 @@
+<%# form_with url: search_rooms_path, method: :post do |form| %>
+  <%# form.search_field :name, oninput: "this.form.requestSubmit()", placeholder: "Search rooms" %>
+<%# end %>
+
+<div data-controller="debounce" class="position-relative">
+
+  <%= form_with url: search_rooms_path, method: :post, data: { debounce_target: "form" } do |form| %>
+    <%= form.search_field :name, class: "form-control", placeholder: "Search rooms", data: { action: "input->debounce#search" } %>
+  <% end %>
+
+  <div id="search_results" class="position-absolute top-100 start-0 w-100 mt-2" style="z-index: 1050;"></div>
+
+</div>

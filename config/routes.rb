@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
   namespace :admin do
-      resources :messages
-      resources :relationships
-      resources :rooms
-      resources :topics
-      resources :users
+    resources :messages
+    resources :relationships
+    resources :rooms
+    resources :topics
+    resources :users
 
-      root to: "users#index"
-    end
+    root to: "users#index"
+  end
+
   get "/home", to: "static_pages#home"
   get "/help", to: "static_pages#help", as: :help
   get "/about", to: "static_pages#about", as: :about
@@ -17,16 +18,24 @@ Rails.application.routes.draw do
   get "/rooms", to: "static_pages#home"
   post "/signin", to: "sessions#create"
   delete "/signout", to: "sessions#destroy"
-  get "search", to: "search#index"
+
   resources :users, param: :slug do
     member do
       get :following, :followers
     end
   end
+
   resources :account_activations, only: %i[ edit ]
   resources :password_resets, only: %i[ new create edit update ]
-  resources :rooms, only: %i[ new create show destroy ], param: :slug
+
+  resources :rooms, param: :slug do
+    collection do
+      post :search
+    end
+  end
+
   resources :messages, only: %i[ create ]
   resources :relationships, only: %i[ create destroy]
+
   root "static_pages#home"
 end
