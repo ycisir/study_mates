@@ -24,6 +24,19 @@ class RoomsController < ApplicationController
     end
   end
 
+  def search
+    if params[:name].present?
+      @rooms = Room.filter_by_name(params[:name])
+    else
+      @rooms = []
+    end
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("search_results", partial: "rooms/search_result", locals: { rooms: @rooms })
+      end
+    end
+  end
+
   def show
     @participants = @room.participants.with_attached_avatar
     @messages = @room.messages.includes(user: { avatar_attachment: :blob }, files_attachments: :blob).order(created_at: :asc)

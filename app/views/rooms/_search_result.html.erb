@@ -1,0 +1,12 @@
+<div class="bg-white border rounded-3 shadow-sm overflow-auto" style="max-height: 300px;">
+  <% if rooms.any? %>
+
+    <% rooms.each do |room| %>
+      <%= link_to highlight(room.name, params[:name]), room_path(room), class: "d-block text-decoration-none text-dark border-bottom p-2 fw-light" %>
+    <% end %>
+
+  <% else %>
+    <div class="p-2 text-muted">No rooms found</div>
+  <% end %>
+
+</div>

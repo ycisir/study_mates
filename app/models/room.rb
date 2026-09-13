@@ -17,10 +17,7 @@ class Room < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   scope :feed, -> { includes(:topic, user: { avatar_attachment: :blob }).recent }
   scope :by_topic, ->(topic_id) { where(topic_id: topic_id) }
-  scope :search, ->(q) {
-    return all if q.blank?
-    joins(:topic).includes(:topic, :user).where("rooms.name ILIKE :q OR topics.name ILIKE :q", q: "%#{q}%").distinct
-  }
+  scope :filter_by_name, ->(name) { where("rooms.name ILIKE ?", "%#{name}%") }
   scope :by_user, ->(user_id) { where(user_id: user_id) }
 
   private
