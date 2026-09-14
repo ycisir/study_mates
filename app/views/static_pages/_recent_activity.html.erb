@@ -7,7 +7,7 @@
     <div>
       <% if message.body.present? %>
       	replied 
-      	<span class="text-dark"><%= message.body %></span>
+        <span class="text-dark"><%= render_message_text(message.body) %></span>
       <% else %>
       	sent attachments
       <% end %>
