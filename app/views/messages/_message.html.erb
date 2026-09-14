@@ -1,20 +1,20 @@
 <div class="mb-2">
     <%= avatar_for(message.user, size: "20x20") %>
-	<%= link_to message.user.name, user_path(message.user), class: "text-decoration-none small" %>: <%= message.body %>
+	<%= link_to message.user.name, user_path(message.user), class: "text-decoration-none small" %>: <%= render_message_text(message.body) %>
 
 	<% if message.files.attached? %>
         <div class="d-flex flex-wrap gap-2">
         	<% message.files.each do |file| %>
-
-          	<% if file.image? %>
-            	<%= link_to url_for(file), target: "_blank" do %>
-              		<%= image_tag url_for(file.variant(:thumb)) %>
-            	<% end %>
-
-          		<% else %>
-            		<%= link_to file.filename.to_s, url_for(file), target: "_blank", class: "text-decoration-none d-block" %>
-          		<% end %>
-        	<% end %>
+                <% if file.image? %>
+                    <%= link_to url_for(file), target: "_blank" do %>
+                        <%= image_tag url_for(file.variant(:thumb)) %>
+                    <% end %>
+                <% else %>
+                    <%= link_to url_for(file), download: file.filename.to_s, class: "text-decoration-none d-block" do %>
+                        <%= file.filename %>
+                    <% end %>
+                <% end %>
+            <% end %>
       	</div>
     <% end %>
 
