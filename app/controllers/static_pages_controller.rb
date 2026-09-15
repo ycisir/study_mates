@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
 
     if params[:topic].present?
       topic = Topic.friendly.find(params[:topic])
-      @rooms = @rooms.by_topic(topic.id)
+      @rooms = Room.by_topic(topic.id)
     end
 
     @rooms = @rooms.paginate(page: params[:page], per_page: 10)
