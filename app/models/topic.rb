@@ -1,4 +1,5 @@
 class Topic < ApplicationRecord
+  normalizes :name, with: ->(name) { name.strip.downcase.titleize }
   has_many :rooms, dependent: :destroy
   validates :name, presence: true, length: { maximum: 30 }
   extend FriendlyId

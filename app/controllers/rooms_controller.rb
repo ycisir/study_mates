@@ -11,8 +11,7 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.new(room_params)
 
     if params[:room][:topic_name].present?
-      topic_name = params[:room][:topic_name].strip.downcase.titleize
-      topic = Topic.find_or_create_by!(name: topic_name)
+      topic = Topic.find_or_create_by!(name: params[:room][:topic_name])
       @room.topic = topic
     end
 
