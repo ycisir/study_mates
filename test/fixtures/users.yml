@@ -6,6 +6,7 @@ harry:
   slug: harry-potter
   activated: true
   activated_at: <%= Time.zone.now %>
+  admin: true
 
 ron:
   name: Ron Weasely
