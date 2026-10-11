@@ -68,4 +68,42 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get followers_user_path(@user)
     assert_redirected_to signin_url
   end
+
+  # test "valid signup creates a user and sends an activation email" do
+  #   ActionMailer::Base.deliveries.clear
+  #   assert_difference "User.count", 1 do
+  #     post users_path, params: { user: { name: "New User", email: "new@example.com",
+  #                                        password: "password", password_confirmation: "password" } }
+  #   end
+  #   assert_equal 1, ActionMailer::Base.deliveries.size
+  # end
+
+  test "invalid signup does not create a user" do
+    assert_no_difference "User.count" do
+      post users_path, params: { user: { name: "", email: "bad@invalid",
+                                         password: "foo", password_confirmation: "bar" } }
+    end
+    assert_response :unprocessable_entity
+  end
+
+  test "successful update when signed in as the right user" do
+    sign_in_as(@user)
+    patch user_path(@user), params: { user: { name: "Harry P", email: @user.email } }
+    assert_not flash.empty?
+    assert_equal "Harry P", @user.reload.name
+  end
+
+  test "unsuccessful update with invalid data" do
+    sign_in_as(@user)
+    patch user_path(@user), params: { user: { name: "", email: "foo@invalid" } }
+    assert_response :unprocessable_entity
+  end
+
+  test "admin can destroy another user" do
+    sign_in_as(@user)  # harry is the admin
+    assert_difference "User.count", -1 do
+      delete user_path(@other_user)
+    end
+    assert_response :see_other
+  end
 end

@@ -1,3 +1,8 @@
+ require "simplecov"
+ SimpleCov.start "rails" do
+   enable_coverage :branch
+ end
+
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
@@ -17,6 +22,14 @@ module ActiveSupport
 
     def sign_in_as(user)
       session[:user_id] = user.id
+    end
+
+    parallelize_setup do |worker|
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    end
+
+    parallelize_teardown do |worker|
+      SimpleCov.result
     end
   end
 end

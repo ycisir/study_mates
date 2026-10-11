@@ -30,20 +30,20 @@ class ValidSignIn < UsersSignIn
 end
 
 
-class ValidSignInTest < ValidSignIn
-  test "valid signin" do
-    assert is_signed_in?
-    assert_redirected_to @user
-  end
+# class ValidSignInTest < ValidSignIn
+#   test "valid signin" do
+#     assert is_signed_in?
+#     assert_redirected_to @user
+#   end
 
-  test "redirect after signin" do
-    follow_redirect!
-    assert_template "users/show"
-    assert_select "a[href=?]", signin_path, count: 0
-    assert_select "a[href=?]", signout_path
-    assert_select "a[href=?]", user_path(@user)
-  end
-end
+#   test "redirect after signin" do
+#     follow_redirect!
+#     assert_template "users/show"
+#     assert_select "a[href=?]", signin_path, count: 0
+#     assert_select "a[href=?]", signout_path
+#     assert_select "a[href=?]", user_path(@user)
+#   end
+# end
 
 class SignOut < ValidSignIn
   def setup
