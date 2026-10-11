@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
   resources :users, param: :slug do
     member do
-      get :following, :followers
+      get :following
+      get :followers
     end
   end
 
