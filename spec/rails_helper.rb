@@ -25,9 +25,6 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 
-# Reuse your existing fixtures while both suites coexist
-config.fixture_paths = [Rails.root.join("test/fixtures")]
-config.use_transactional_fixtures = true
 
 Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
@@ -75,4 +72,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Reuse your existing fixtures while both suites coexist
+  config.fixture_paths = [Rails.root.join("test/fixtures")]
+  config.use_transactional_fixtures = true
 end
