@@ -25,6 +25,7 @@ require 'rspec/rails'
 # require only the support files necessary.
 #
 
+
 Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 
 # Ensures that the test database schema matches the current schema file.
