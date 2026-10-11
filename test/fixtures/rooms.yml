@@ -13,3 +13,11 @@ rails:
   topic: ruby
   user: ron
   created_at: <%= 1.minutes.ago %>
+
+
+jack_room:
+  name: Jack room
+  info: This is test jack room info
+  topic: ruby
+  user: jack
+  created_at: <%= 5.minutes.ago %>

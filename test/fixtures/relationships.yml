@@ -11,3 +11,7 @@ one:
 two:
   follower: jack
   followed: harry
+
+harry_follows_jack:
+  follower: harry
+  followed: jack
