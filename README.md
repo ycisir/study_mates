@@ -5,8 +5,6 @@
 
 A collaborative learning platform for real-time discussion, messaging and knowledge sharing.
 
-**Live demo:** [YOUR-RENDER-URL] (the free tier can take about 30 seconds to wake up)
-
 ### Features
 * Authentication with account activation & password recovery
 * Follow / unfollow users + personalized feed
