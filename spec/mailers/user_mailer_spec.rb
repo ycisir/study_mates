@@ -11,8 +11,8 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "has the right subject, recipient, and sender" do
       expect(mail.subject).to eq("Account activation")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq([ApplicationMailer.default[:from]])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ ApplicationMailer.default[:from] ])
     end
 
     it "includes the name, token, and escaped email in the body" do
@@ -27,8 +27,8 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "has the right subject, recipient, and sender" do
       expect(mail.subject).to eq("Password reset")
-      expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq([ApplicationMailer.default[:from]])
+      expect(mail.to).to eq([ user.email ])
+      expect(mail.from).to eq([ ApplicationMailer.default[:from] ])
     end
 
     it "includes the token and escaped email in the body" do

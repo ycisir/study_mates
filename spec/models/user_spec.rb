@@ -82,7 +82,7 @@ RSpec.describe User, type: :model do
   describe "associations" do
     it "destroys associated rooms when the user is destroyed" do
       user.save
-      user.rooms = [rooms(:rails)]
+      user.rooms = [ rooms(:rails) ]
       expect { user.destroy }.to change(Room, :count).by(-1)
     end
   end
