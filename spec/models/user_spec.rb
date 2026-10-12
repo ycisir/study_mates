@@ -113,8 +113,6 @@ RSpec.describe User, type: :model do
     let(:ron)   { users(:ron) }
     let(:jack)  { users(:jack) }
 
-    before { harry.follow(jack) }
-
     it "includes rooms from followed users" do
       expect(jack.rooms).not_to be_empty
       jack.rooms.each { |room| expect(harry.feed).to include(room) }
