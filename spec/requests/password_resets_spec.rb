@@ -13,9 +13,10 @@ RSpec.describe "Password resets", type: :request do
   end
 
   describe "GET /password_resets/new" do
-    it "returns success" do
+    it "returns success and shows the email field" do
       get new_password_reset_path
       expect(response).to have_http_status(:success)
+      expect(response.body).to include('name="password_reset[email]"')
     end
   end
 
@@ -33,6 +34,13 @@ RSpec.describe "Password resets", type: :request do
 
       expect(user.reload.reset_digest).to be_present
       expect(response).to redirect_to(root_url)
+    end
+
+    it "re-renders the form for a blank email" do
+      post password_resets_path, params: { password_reset: { email: "" } }
+      expect(response).to have_http_status(:unprocessable_content)
+      expect(flash).not_to be_empty
+      expect(response).to render_template("password_resets/new")
     end
   end
 
