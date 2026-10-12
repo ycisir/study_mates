@@ -76,4 +76,5 @@ RSpec.configure do |config|
   # Reuse your existing fixtures while both suites coexist
   config.fixture_paths = [Rails.root.join("test/fixtures")]
   config.use_transactional_fixtures = true
+  config.global_fixtures = :all
 end
