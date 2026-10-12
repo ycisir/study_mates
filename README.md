@@ -25,7 +25,7 @@ git clone https://github.com/ycisir/study_mates.git
 cd study_mates
 bundle install
 rails db:setup
-rails t && rails s
+bundle exec rspec
 ```
 
 ### License
