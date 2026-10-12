@@ -1,4 +1,6 @@
 # Study Mates
+[![CI](https://github.com/ycisir/study_mates/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ycisir/study_mates/actions/workflows/ci.yml)
+![Ruby](https://img.shields.io/badge/Ruby-3.4.8-red) ![Rails](https://img.shields.io/badge/Rails-8.0-red) ![Tests](https://img.shields.io/badge/line%20coverage-91%25-brightgreen)
 A SaaS-based collaborative learning platform for real-time discussion, messaging and knowledge sharing.
 
 ### Features
